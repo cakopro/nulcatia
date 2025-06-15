@@ -27,6 +27,11 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.redirect('/home');
+});
+
+
 app.use('/', router);
 
 app.use((err, req, res, next) => {
