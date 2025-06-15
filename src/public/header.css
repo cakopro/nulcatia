@@ -1,0 +1,72 @@
+.body {
+    margin: 0; /* espacio exterior | |*/
+    padding: 0; /*interior | aca 10px auto 10px defina altura y abajo , el otro hacia los lados |*/
+}
+
+.header {
+    background-color: gray; /*para dar color al fondo */
+}
+
+.container-colum-3{
+    display: grid; /* dar cuadrilla  abajo columnas  */
+    grid-template-columns: 1fr auto 1fr;
+    place-items: center; /*centra contenido*/
+}
+
+.container-logo {
+    margin: 10px auto;  
+    margin-right: 200px; /* empuja a la izquierda el de abajo hacia la derecha*/
+    margin-left: 10px;
+    padding: 0%;
+    background-color: #f9f9f9;
+    width: 60px; /*ancho*/
+    text-align: center; /*centra contenido texto*/
+    border-radius: 10px;
+}
+
+.container-logo img {
+    display: block;
+    width: 100%; /*ocupa ancho del contenido*/
+    border-radius: 10px;
+}
+
+.lista_nav {
+    display: flex; /* displey de fila*/
+    list-style: none; 
+    align-items: center; /* Alinea ítems verticalmente */
+    padding: 0;
+    margin: 0px;
+    gap: 20px;
+}
+
+.lista_nav li {
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 20px;
+}
+
+.lista_nav li a{
+    text-decoration: none;
+    color: white;
+}
+
+.div_login_regiter {
+    display: flex;
+    align-items: center;
+    gap: 35px; /* espacio entre login y regiter*/
+}
+
+.icon-link {
+    display: flex; /* icono + texto horizontal*/
+    align-items: center; /* items centro */
+    gap: 5px; /* espacio entre icono texto*/
+    text-decoration: none; /* quitar decoracion a la etiqueta a*/
+    color: white; /*color texto */
+    padding: 6px 5px; 
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+}
+
+.icon-link:hover {
+  background-color: darkorange;
+}

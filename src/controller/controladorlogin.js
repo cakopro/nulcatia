@@ -6,7 +6,7 @@ const verlogin = (req, res) => {
 
 const verificarlogin = (req, res) => {
   const { nombre_usuario,contraseña, correo  } = req.body;
-
+  console.log(nombre_usuario,contraseña,correo)
   models.verificarUsuario(nombre_usuario,contraseña, correo)
     .then((datos) => {
       if (datos.length === 0) {
