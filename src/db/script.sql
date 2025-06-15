@@ -56,14 +56,15 @@ INSERT INTO Territorios (nombre, kilometros) VALUES
 ('Valles de Versiones', 220);
 
 INSERT INTO Gatitos (nombre, apellido, edad, id_clan, rol) VALUES
-('Felix', 'Socketpaw', 5, 1, 'Arquitecto de Conexiones'),
-('Serafina', 'Cachewhisker', 4, 4, 'Guardiana de la Latencia'),
-('Captain', 'Middleware', 6, 1, 'Centinela de Seguridad'),
-('Ajax', 'Whisperpaw', 3, 2, 'Mensajero Asíncrono'),
-('Nova', 'Schemaforge', 5, 1, 'Ingeniera de Datos'),
-('Echo', 'Testclaw', 4, 4, 'Inspector de Calidad'),
-('Orion', 'Rollback', 6, 3, 'Guardián de Integridad'),
-('Vega', 'Docstring', 5, 3, 'Cronista Oficial');
+('Felix', 'Socketpaw', 5, 1, 'admin'),
+('Serafina', 'Cachewhisker', 4, 2, 'admin'),
+('Orion', 'Rollback', 6, 3, 'admin'),
+('Echo', 'Testclaw', 4, 4, 'admin'),
+('Captain', 'Middleware', 6, 1, 'admin clan'),
+('Nova', 'Schemaforge', 5, 1, 'principiante'),
+('Ajax', 'Whisperpaw', 3, 2, 'admin clan'),
+('Vega', 'Docstring', 5, 3, 'admin clan'),
+('Patch', 'Cyberscratch', 4, 4, 'principiante');
 
 INSERT INTO ClanTerri (id_clan, id_territorio) VALUES
 (1, 1), (1, 6), (1, 7),
