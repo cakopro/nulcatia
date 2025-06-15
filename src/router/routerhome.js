@@ -1,12 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const {Router} = require('express');
+const router = Router()
+const controladorhome = require('../controller/controladorhome')
 
-router.get('/', (req, res) => {
-  res.send('Bienvenido a la ruta /home');
-});
-
-router.get('/info', (req, res) => {
-  res.json({ mensaje: 'Esta es la información del home' });
-});
+router.get('/',controladorhome.verhome)
 
 module.exports = router;

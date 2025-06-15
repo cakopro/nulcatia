@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const config = require('./config/config')
-const router = require('./routers/index')
+const router = require('./router/index')
 const path = require('path')
 /* Definen los objetos del sistema o propiedades del sistema */
 const app = express();
