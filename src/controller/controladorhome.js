@@ -1,5 +1,4 @@
 
-
 const verhome = ((req,res) => {
     res.render('index')
 })
