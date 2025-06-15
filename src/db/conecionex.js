@@ -1,10 +1,10 @@
 const mysql = require('mysql2');
 const config = require('../config/config');
 
-let con;
+let conn;
 
 function coneccion(){
-    con = mysql.createConnection(config.mysql);
+    conn = mysql.createConnection(config.mysql);
     
     conn.connect((error) => {
         if (error) {
@@ -25,7 +25,7 @@ function coneccion(){
         }
     });
 }
+coneccion()
 
 
-
-module.exports = con
+module.exports = conn
