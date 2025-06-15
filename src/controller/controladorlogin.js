@@ -1,19 +1,18 @@
-const models = require('../models/models.ogin');
+const models = require('../models/modelslogin');
 
-const verhome = (req, res) => {
-  res.render('logins', { error: null });
+const verlogin = (req, res) => {
+  res.render('logins', { error: null } );
 };
 
-const obtenerPersonas = (req, res) => {
-  const { nombre, rol } = req.body;
+const verificarlogin = (req, res) => {
+  const { nombre_usuario,contraseña, correo  } = req.body;
 
-  models.verificarGatito(nombre, rol)
-  
+  models.verificarUsuario(nombre_usuario,contraseña, correo)
     .then((datos) => {
       if (datos.length === 0) {
         return res.render('logins', { error: 'Nombre o rol incorrecto' });
       }
-      req.session.usuario = datos[0]; // Guarda el gatito en la sesión
+      req.session.usuario = datos[0]; 
       res.redirect('/home');
     })
     .catch((error) => {
@@ -21,4 +20,4 @@ const obtenerPersonas = (req, res) => {
     });
 };
 
-module.exports = { verhome, obtenerPersonas };
+module.exports = { verlogin, verificarlogin };
