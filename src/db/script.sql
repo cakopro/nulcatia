@@ -6,7 +6,7 @@ CREATE TABLE Clanes (
     nombre VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE Pergamino (
+CREATE TABLE Pergaminos (
     id_pergamino INT PRIMARY KEY AUTO_INCREMENT,
     clan INT,
     titulo VARCHAR(100),
@@ -14,7 +14,7 @@ CREATE TABLE Pergamino (
     FOREIGN KEY (clan) REFERENCES Clanes(id_clan)
 );
 
-CREATE TABLE Gatito (
+CREATE TABLE Gatitos (
     id_gato INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
@@ -24,7 +24,7 @@ CREATE TABLE Gatito (
     FOREIGN KEY (id_clan) REFERENCES Clanes(id_clan)
 );
 
-CREATE TABLE Territorio (
+CREATE TABLE Territorios (
     id_territorio INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50),
     kilometros INT 
