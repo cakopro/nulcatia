@@ -70,3 +70,49 @@
 .icon-link:hover {
   background-color: darkorange;
 }
+/* header de usuario admin conectado */
+.div_login{
+    position: relative; /* referencia para el menú */
+    display: inline-block;
+}
+
+.menu_perfil{
+    position: absolute; /* este se va a justar segun el relative mas cercano y tomata su posicion */
+    background-color: #333;
+    margin-top: 37px;
+    padding: 10px;
+    border-radius: 5px;
+    align-content: center;
+    flex-direction: column; /* para que este en columna*/
+    display: none;
+    gap: 10px;
+    width: max-content; /* para usar todo el espacio segun el contenido*/
+    list-style: none; 
+}
+
+.menu_perfil p {
+  text-align: center; 
+  color: white;
+}
+
+.menu_perfil li{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+}
+
+.menu_perfil li p {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu_perfil li a{
+    color: #f9f9f9;
+    text-decoration: none; /* quitar decoracion a la etiqueta a*/
+}
+.div_login:hover .menu_perfil {
+    display: flex; /* aparece al hacer hover */
+}

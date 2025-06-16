@@ -18,6 +18,7 @@
                 </div>
                 <nav>
                     <ul class="lista_nav">
+                        <li> <a href="gatitos"> gatitos</a></li>
                         <li> <a href="clanes"> clanes</a></li>
                         <li> <a href="pergaminos">pergaminos</a></li>
                         <li> <a href="territorios">territorios</a></li>
@@ -31,7 +32,7 @@
                 </div>
             </div>
         </header>
-        <% } else if(usuario.rol=='admin' ) {%>
+        <% } else {%>
             <header class="header">
                 <div class="container-colum-3">
                     <div class="container-logo">
@@ -46,47 +47,20 @@
                         </ul>
                     </nav>
                     <div class="div_login">
-                        <span class="material-icons">account_circle</span>
-                        <div class="menu-invicibe">
-                            <ul>
+                        <span class="material-icons">account_circle</span> 
+                            <ul class="menu_perfil">
                                 <li>
-                                    <%= usuario.nombre_usuario %>
+                                    <p><span class="material-icons">badge</span> <%= usuario.nombre_usuario %></p>
                                 </li>
-                                <li><a href="perfil"> ver perfil</li>
-                                <li><a href="logout">cerrar sesion</a></li>
+                                <li>
+                                    <a href="perfil" class="icon-link"> <span class="material-icons">person</span> ver perfil</a>
+                                </li>
+                                <li><a href="logout" class="icon-link"> <span class="material-icons">logout</span> cerrar sesion</a></li>
                             </ul>
-                        </div>
                     </div>
                 </div>
             </header>
-            <% } else { %>
-                <header class="header">
-                    <div class="container-colum-3">
-                        <div class="container-logo">
-                            <a href="home"><img src="image/Gp5M403W4AA8KjP.jpg" alt="nuncatia"></a>
-                        </div>
-                        <nav>
-                            <ul class="lista_nav">
-                                <li> <a href="clanes"> clanes</a></li>
-                                <li> <a href="pergaminos">pergaminos</a></li>
-                                <li> <a href="territorios">territorios</a></li>
-                            </ul>
-                        </nav>
-                        <div class="div_login">
-                            <span class="material-icons">account_circle</span>
-                            <div class="menu-invicibe">
-                                <ul>
-                                    <li>
-                                        <%= usuario.nombre_usuario %>
-                                    </li>
-                                    <li><a href="perfil"> ver perfil</li>
-                                    <li><a href="logout">cerrar sesion</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-                <% } %>
+            <% } %>
 </body>
 
 </html>
