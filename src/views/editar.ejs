@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/perfil.css">
+    <title>Perfil</title>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+        <main>
+            <div class="container-perfil">
+                <div class="container-foto">
+                    <img src="/image/aku.webp" alt="fotoperfil">
+                    <h1>Bienvenido <%= usuario.nombre_usuario %></h1>
+                </div>
+            <div class="container-editar-perfil">
+                <h2>Editar informacion</h2>
+                <form action="">
+
+                </form>
+            </div>
+        </main>
+        <%- include('partials/footer') %>
+</body>
+
+</html>

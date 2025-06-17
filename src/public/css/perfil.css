@@ -1,0 +1,92 @@
+.container-perfil{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 2px solid black; 
+}
+
+.container-foto{
+    display: flex;
+    align-items: bottom;
+    gap: 50px;
+    grid-column: 1/2;
+    grid-template-rows: 1/1;
+    background-color: blue;
+    border-bottom: 2px solid black; 
+    padding-bottom: 20px;
+}
+
+.container-foto img{
+    width: 200px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.container-datos{
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+}
+
+.datos-usuario,
+.datos-gato{
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.lista-usuario, 
+.lista-gato {
+    display: flex;
+    gap: 30px;
+    list-style: none; 
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+}
+
+.lista-usuario li, 
+.lista-gato li{
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 18px;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 3px;
+}
+
+.boton_editar_perfil{
+    display: inline-block;
+    width: fit-content;
+    text-decoration: none;
+    color: black;
+    background-color: orange;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 20px;
+    align-items: center;
+    display: flex;
+}
+
+.boton_editar_perfil:hover{
+    background-color: orange;
+    color: white;
+}
+
+.divisor {
+    height: 2px;
+    background-color: black;
+    margin: 10px 0;
+    width: calc(100% + 40px); 
+    margin-left: -40px;        
+}
+
+.datos-usuario h2,
+.datos-gato h2 {
+    margin-left: 4px;
+}

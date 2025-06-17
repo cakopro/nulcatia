@@ -35,7 +35,7 @@ app.use('/', router);
 // error global que imprimira el error en una vista llamada error
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).render('error', { error: err });
+  res.status(500).render('error', {mensaje: err.message || 'Error interno del servidor'});
 });
 
 

@@ -17,14 +17,14 @@ CREATE TABLE Pergaminos (
     FOREIGN KEY (clan) REFERENCES Clanes(id_clan)
 );
 
--- Tabla Gatitos con rol técnico según el clan
+-- Tabla Gatitos 
 CREATE TABLE Gatitos (
     id_gato INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
-    edad INT,
+    fecha_nacimiento DATE,
     id_clan INT,
-    rol ENUM("frontend", "backend", "versionador", "seguridad"),
+    experiencia ENUM("novato", "principiante", "maestro"),
     FOREIGN KEY (id_clan) REFERENCES Clanes(id_clan)
 );
 
@@ -34,7 +34,9 @@ CREATE TABLE Usuarios (
     nombre_usuario VARCHAR(100),
     contraseña VARCHAR(100),
     correo VARCHAR(100),
-    rol ENUM("admin", "normal") DEFAULT "normal"
+    rol ENUM("admin", "normal") DEFAULT "normal",
+    id_gato INT,
+    FOREIGN KEY (id_gato) REFERENCES Gatitos(id_gato)
 );
 
 -- Tabla Territorios
@@ -72,16 +74,16 @@ INSERT INTO Territorios (nombre, kilometros) VALUES
 ('Llanuras de Logs', 180),
 ('Valles de Versiones', 220);
 
-INSERT INTO Gatitos (nombre, apellido, edad, id_clan, rol) VALUES
-('Felix', 'Socketpaw', 5, 1, 'backend'),
-('Serafina', 'Cachewhisker', 4, 2, 'frontend'),
-('Orion', 'Rollback', 6, 3, 'versionador'),
-('Echo', 'Testclaw', 4, 4, 'seguridad'),
-('Captain', 'Middleware', 6, 1, 'backend'),
-('Nova', 'Schemaforge', 5, 2, 'frontend'),
-('Ajax', 'Whisperpaw', 3, 3, 'versionador'),
-('Vega', 'Docstring', 5, 3, 'versionador'),
-('Patch', 'Cyberscratch', 4, 4, 'seguridad');
+INSERT INTO Gatitos (nombre, apellido, fecha_nacimiento, id_clan, experiencia) VALUES
+('Felix', 'Socketpaw', '2019-03-15', 1, 'maestro'),
+('Serafina', 'Cachewhisker', '2020-07-10', 2, 'principiante'),
+('Orion', 'Rollback', '2018-12-25', 3, 'maestro'),
+('Echo', 'Testclaw', '2020-11-01', 4, 'principiante'),
+('Captain', 'Middleware', '2018-02-19', 1, 'maestro'),
+('Nova', 'Schemaforge', '2019-10-12', 2, 'novato'),
+('Ajax', 'Whisperpaw', '2021-04-03', 3, 'novato'),
+('Vega', 'Docstring', '2019-08-29', 3, 'principiante'),
+('Patch', 'Cyberscratch', '2020-01-18', 4, 'novato');
 
 INSERT INTO ClanTerri (id_clan, id_territorio) VALUES
 (1, 1), (1, 6), (1, 7),
@@ -95,7 +97,7 @@ INSERT INTO Pergaminos (clan, titulo, texto) VALUES
 (3, 'Libro de Versionado', 'Códigos antiguos del control de cambios'),
 (4, 'Firewall Eterno', 'Protección ancestral contra amenazas digitales');
 
-INSERT INTO Usuarios (nombre_usuario, contraseña, correo, rol) VALUES
-('adminmaster', 'admin123', 'admin@nulcatia.cl', 'admin'),
-('gatofront', 'clave123', 'frontend@nulcatia.cl', 'normal'),
-('gatoadmin', 'seguro456', 'seguridad@nulcatia.cl', 'admin');
+INSERT INTO Usuarios (nombre_usuario, contraseña, correo, rol, id_gato) VALUES
+('adminmaster', 'admin123', 'admin@nulcatia.cl', 'admin', 1),
+('gatofront', 'clave123', 'frontend@nulcatia.cl', 'normal', 2),
+('gatoadmin', 'seguro456', 'seguridad@nulcatia.cl', 'admin', 4);

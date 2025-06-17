@@ -1,0 +1,10 @@
+-primero se definio la base de datos a trabajar nulcatia con 6 entidades, sus relaciones y sus campos.
+ se insertaron datos en las tablas.
+ se itenfico los campos mas solicitados y se aplico indices.
+ se creo una excepcion para no poder borrar un clan si esta referenciado a uno o muchos gatos
+
+-Se planteo las diferentes rutas a utilizar.
+-Se planteo la arquitectura para la pagina web.
+-Se inicio el proyecto instalando: npm i dotenv mysql2 express express-session express-validator ejs path | npm i nodemon -D
+esos fueron los comandos utilizados para instalar todo lo necesario para el proyecto
+-Se creo las diferentes carpetas del proyecto y se configuro el package.json
