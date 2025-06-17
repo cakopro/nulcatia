@@ -4,23 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/perfil.css">
+    <link rel="stylesheet" href="/css/editar.css">
     <title>Perfil</title>
 </head>
 
 <body>
     <%- include('partials/header') %>
         <main>
+            <div class="centrar">
             <div class="container-perfil">
                 <div class="container-foto">
-                    <img src="/image/aku.webp" alt="fotoperfil">
-                    <h1>Bienvenido <%= usuario.nombre_usuario %></h1>
+                    <h1>Bienvenido <%= usuario.nombre_usuario %>
+                    </h1>
                 </div>
-            <div class="container-editar-perfil">
-                <h2>Editar informacion</h2>
-                <form action="">
+                    <h2>Editar informacion</h2>
+                    <form action="/perfil/editar" method="post">
+                    <label for="nombre_usuario">nombre:</label>
+                    <input type="text" id="nombre_usuario" name="nombre_usuario">
 
-                </form>
+                    <label for="contraseña">contraseña:</label>
+                    <input type="password" id="contraseña" name="contraseña">
+
+                    <label for="correo">email:</label>
+                    <input type="email" id="correo" name="correo">
+
+
+                    <label for="nombre">gato:</label>
+                    <input type="text" id="nombre" name="nombre">   
+
+                    <label for="apellido">apellido:</label>
+                    <input type="text" id="apellido" name="apellido"> 
+
+                    <label for="fecha_nacimiento">fecha de nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"> 
+
+                    <label for="clan">clan:</label>
+                    <input type="text" id="clan" name="clan"> 
+
+                    <label for="experiencia">experiencia:</label>
+                    <input type="text" id="experiencia" name="experiencia"> 
+                    <button type="submit">enviar</button>
+                    </form>
             </div>
         </main>
         <%- include('partials/footer') %>
