@@ -88,15 +88,39 @@
 }
 
 
-.boton-cancelar,
+.boton-cancelar {
+  text-decoration: none;
+  background-color: #F28B82;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.boton-cancelar:hover {
+  background-color: #bbb;
+}
+
 .boton-borrar {
-    background-color: red;
-    color: white;
-    text-decoration: none;
-    padding: 5px 40px;
-    border-radius: 8px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.boton-borrar:hover {
+  background-color: #c0392b;
+}
+.boton-guardar:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+  opacity: 0.7;
 }

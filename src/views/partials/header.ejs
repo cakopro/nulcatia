@@ -46,18 +46,43 @@
                             <li> <a href="territorios">territorios</a></li>
                         </ul>
                     </nav>
-                    <div class="div_login">
-                        <span class="material-icons">account_circle</span> 
-                            <ul class="menu_perfil">
-                                <li>
-                                    <p><span class="material-icons">badge</span> <%= usuario.nombre_usuario %></p>
-                                </li>
-                                <li>
-                                    <a href="/perfil" class="icon-link"> <span class="material-icons">person</span> ver perfil</a>
-                                </li>
-                                <li><a href="/logout" class="icon-link"> <span class="material-icons">logout</span> cerrar sesion</a></li>
-                            </ul>
+                    <div class="dropdown div_login">
+                        <a href="#" onclick="toggleMenu(event)">
+                            <span class="material-icons" style="font-size: 25px; color: white;">account_circle</span>
+                        </a>
+
+                        <ul class="menu_perfil" id="menu_perfil">
+                            <li>
+                                <p><span class="material-icons">badge</span>
+                                    <%= usuario.nombre_usuario %>
+                                </p>
+                            </li>
+                            <li>
+                                <a href="/perfil" class="icon-link">
+                                    <span class="material-icons">person</span> Ver perfil
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/logout" class="icon-link">
+                                    <span class="material-icons">logout</span> Cerrar sesión
+                                </a>
+                            </li>
+                        </ul>
                     </div>
+
+                    <script>
+                        function toggleMenu(e) {
+                            e.preventDefault();
+                            document.getElementById("menu_perfil").classList.toggle("show");
+                        }
+
+                        window.onclick = function (event) {
+                            if (!event.target.closest('.dropdown')) {
+                                document.getElementById("menu_perfil").classList.remove("show");
+                            }
+                        }
+
+                    </script>
                 </div>
             </header>
             <% } %>
