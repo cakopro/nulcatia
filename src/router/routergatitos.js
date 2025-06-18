@@ -1,8 +1,10 @@
 const {Router} = require('express');
 const router = Router()
+const controlador = require('../controller/controladorgatitos')
 
-//router.get('/',controlador.verGatitos);
-//
+
+router.get('/',controlador.vervistagatitos);
+
 //router.get('/nuevo',controlador.formularioNuevoGatito);
 //
 //router.post('/', controlador.crearGatito);
@@ -13,4 +15,4 @@ const router = Router()
 //
 //router.delete('/:id',controlador.eliminarGatito);
 //
-//module.exports = router
+module.exports = router
