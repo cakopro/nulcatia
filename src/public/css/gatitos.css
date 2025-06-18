@@ -1,17 +1,20 @@
 .tabla {
-    border-collapse: collapse;
-    width: 60%;
-    margin: 20px auto;
-  }
-  th, td {
-    border: 1px solid #333;
-    padding: 10px;
-    text-align: center;
-  }
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+  border-collapse: collapse;         /* Elimina espacios dobles entre bordes */
+  width: 60%;                        /* Ancho del 60% del contenedor padre */
+  margin: 20px auto;                 /* Centra horizontalmente la tabla y deja espacio arriba y abajo */
+}
+
+th, td {
+  border: 1px solid #333;            /* Borde negro alrededor de celdas */
+  padding: 10px;                     /* Espaciado interno cómodo */
+  text-align: center;                /* Centra el texto */
+}
+
+th {
+  background-color: #4CAF50;         /* Fondo verde para encabezados */
+  color: white;                      /* Texto blanco */
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;         /* Color gris claro en filas pares */
+}
