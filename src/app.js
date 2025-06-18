@@ -4,7 +4,9 @@ const config = require('./config/config')
 const router = require('./router/index')
 const path = require('path')
 const session = require('express-session'); 
+const methodOverride = require('method-override'); 
 const app = express();
+
 
 // Settings
 app.set('port',config.app.port);
@@ -13,6 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method')); 
 //crea una cookie con la cual almacenaremos el inicio de sesion de un usuario.
 app.use(session({
   secret: config.session.secret,
