@@ -6,7 +6,7 @@ const verVistaPergaminos = (req, res) => {
       res.render("pergaminos", { usuario: req.session.usuario || null , pergaminos});
   })
   .catch((error) => {
-    res.status(500).send("Error al cargar gatitos: " + error);
+    res.status(500).send("Error al cargar pergaminos: " + error);
   })
 };
 

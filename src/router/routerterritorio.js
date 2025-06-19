@@ -14,4 +14,4 @@ const router = Router()
 // router.delete('/:id',controlador.eliminarTerritorio);
 
 
-module.exports = router
+//module.exports = router
