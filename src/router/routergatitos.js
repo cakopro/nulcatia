@@ -7,7 +7,7 @@ router.get('/',controlador.vervistagatitos);
 
 router.get('/nuevo',controlador.formularioGatito);
 
-router.post('/nuevo', controlador.crearGatito);
+router.post('/nuevo', controlador.agregarGatito);
 
 //router.get('/:id/editar', controlador.formularioActualizarGatito);
 

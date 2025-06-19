@@ -45,6 +45,9 @@ const editarperfil = ((req,res) =>{
 
     models.actualiarUsuario(datosUsuario,id_usuario)
         .then(() => {
+            req.session.usuario.nombre_usuario = nombre_usuario;
+            req.session.usuario.contraseña = contraseña;
+            req.session.usuario.correo = correo;
             return models.actualiarGato(datosGato, id_gato);
         })
         .then(() => {
@@ -54,6 +57,22 @@ const editarperfil = ((req,res) =>{
             res.status(500).send('Error al actualizar: ' + error);
         });
 });
+
+const editarperfilSinGato = (req, res) => {
+    const { nombre_usuario, contraseña, correo } = req.body;
+    const datosUsuario = { nombre_usuario, contraseña, correo };
+
+    const id_usuario = req.session.usuario.id_usuario;
+
+    models.actualiarUsuario(datosUsuario, id_usuario)
+        .then(() => {
+            req.session.usuario.nombre_usuario = nombre_usuario;
+            req.session.usuario.contraseña = contraseña;
+            req.session.usuario.correo = correo;
+            res.redirect('/perfil');
+        })
+        .catch(error => res.status(500).send('Error al actualizar sin gato: ' + error));
+};
 
 const eliminarPerfil = (req,res) =>{
     const id_usuario = req.session.usuario.id_usuario
@@ -71,4 +90,4 @@ const eliminarPerfil = (req,res) =>{
     })
 }
 
-module.exports = {verperfil, vistaEditarPerfil, editarperfil, eliminarPerfil}
+module.exports = {verperfil, vistaEditarPerfil, editarperfil, eliminarPerfil, editarperfilSinGato}

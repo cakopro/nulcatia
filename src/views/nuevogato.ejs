@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/nuevogato.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+        <main>
+            <div class="centrar">
+                <div class="container-central">
+                    <div class="container-foto">
+                        <img src="/image/aku.webp" alt="fotoperfil">
+                        <h1>Bienvenido <%= usuario.nombre_usuario %>
+                        </h1>
+                    </div>
+                    <section>
+                        <h2>Crear gatito:</h2>
+                        <form action="/gatitos/nuevo/" method="POST" class="formulario-crear">
+
+                            <label for="nombre">Gato:</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ingresa el nuevo nombre del gato"
+                                value="<%= datos?.nombre|| '' %>">
+
+                            <div class="input-group">
+                                <label for="apellido">Apellido:</label>
+                                <input type="text" id="apellido" name="apellido"
+                                    placeholder="ingrese el nuevo apellido del gato"
+                                    value="<%= datos?.apellido || '' %>">
+
+                                <% if (errores?.nombreCompleto){ %>
+                                    <p class="error">
+                                        <%=errores.nombreCompleto %>
+                                    </p>
+                                    <% } %>
+                            </div>
+                            <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"
+                                placeholder="ingrese la nueva fecha de nacimiento"
+                                value="<%= datos?.fecha_nacimiento || '' %>">
+
+                            <label for="id_clan">Clan:</label>
+                            <select id="id_clan" name="id_clan">
+                                <% clanes.forEach(clan=> { %>
+                                    <option value="<%= clan.id_clan %>" <%=datos?.id_clan==clan.id_clan ? ' selected '
+                                        : '' %>>
+                                        <%= clan.nombre %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+
+                            <label for="experiencia">Experiencia:</label>
+                            <select id="experiencia" name="experiencia">
+                                <option value="novato" <%=datos?.experiencia=="novato" ? "selected" : "" %>>Novato
+                                </option>
+                                <option value="principiante" <%=datos?.experiencia=="principiante" ? "selected" : "" %>
+                                    >Principiante</option>
+                                <option value="maestro" <%=datos?.experiencia=="maestro" ? "selected" : "" %>>Maestro
+                                </option>
+                            </select>
+
+                            <div class="botones-formulario">
+                                <button type="submit" class="boton-guardar">
+                                    <span class="material-icons">save</span>Guardar
+                                </button>
+                                <a href="/perfil" class="boton-cancelar">
+                                    <span class="material-icons">close</span>Cancelar
+                                </a>
+                            </div>
+                        </form>
+                        <script>
+                            const formulario = document.querySelector('.formulario-crear');
+                            const guardarBtn = formulario.querySelector('.boton-guardar');
+                            const campos = formulario.querySelectorAll('input, select');
+
+                            function verificarCamposLlenos() {
+                                let todosLlenos = true;
+                                campos.forEach(campo => {
+                                    if (!campo.value.trim()) {
+                                        todosLlenos = false;
+                                    }
+                                });
+                                guardarBtn.disabled = !todosLlenos;
+                            }
+
+                            campos.forEach(campo => {
+                                campo.addEventListener('input', verificarCamposLlenos);
+                                campo.addEventListener('change', verificarCamposLlenos);
+                            });
+
+                            window.addEventListener('DOMContentLoaded', verificarCamposLlenos);
+                        </script>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <%- include('partials/footer') %>
+</body>
+
+</html>
