@@ -1,17 +1,17 @@
 const {Router} = require('express');
 const router = Router()
 
-router.get('/',controlador.verPergaminos);
+// router.get('/',controlador.verPergaminos);
 
-router.get('/nuevo',controlador.formularioPergaminos);
+// router.get('/nuevo',controlador.formularioPergaminos);
 
-router.post('/', controlador.crearPergamino);
+// router.post('/', controlador.crearPergamino);
 
-router.get('/:id/editar', controlador.formularioActualizarPergamino);
+// router.get('/:id/editar', controlador.formularioActualizarPergamino);
 
-router.put('/:id', controlador.actualizarPergamino);
+// router.put('/:id', controlador.actualizarPergamino);
 
-router.delete('/:id',controlador.eliminarPergamino);
+// router.delete('/:id',controlador.eliminarPergamino);
 
 
 module.exports = router

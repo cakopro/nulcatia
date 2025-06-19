@@ -1,0 +1,51 @@
+<main>
+  <table class="tabla">
+    <thead>
+      <tr>
+        <th colspan="6">Gatitos</th>
+      </tr>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Fecha nacimiento</th>
+        <th>Clan</th>
+        <th>Experiencia</th>
+        <% if (session?.user?.rol === 'admin') { %>
+          <th>Acciones</th>
+        <% } %>
+      </tr>
+    </thead>
+    <tbody>
+      <% gatitos.forEach(gato => { 
+          const mostrar = (
+            !session?.user || // sin login
+            session.user.rol === 'admin' || // admin
+            session.user.clan === gato.clan // usuario ve su clan
+          );
+
+          if (mostrar) {
+      %>
+        <tr>
+          <td><%= gato.nombre %></td>
+          <td><%= gato.apellido %></td>
+          <td><%= gato.fecha_nacimiento.toISOString().slice(0,10) %></td>
+          <td><%= gato.clan %></td>
+          <td><%= gato.experiencia %></td>
+          
+          <% if (session?.user?.rol === 'admin') { %>
+            <td>
+              <form method="POST" action="/eliminar-gato/<%= gato.id %>">
+                <button type="submit">Eliminar</button>
+              </form>
+            </td>
+          <% } %>
+        </tr>
+      <% } // end if mostrar %>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <% if (session?.user?.rol === 'admin') { %>
+    <a href="/agregar-gato"><button>Agregar nuevo gatito</button></a>
+  <% } %>
+</main>
