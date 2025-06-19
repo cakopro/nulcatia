@@ -11,7 +11,6 @@
 <body>
   <%- include('partials/header') %>
     <main>
-        <% if(!usuario) { %>
       <table class="tabla">
         <thead>
           <tr>
@@ -35,11 +34,10 @@
               <td>
                 <%= pergamino.texto %>
               </td> 
-            </tr>
-            <% }); %>
+              <td>
+            <% } %>
         </tbody>
       </table>
-      <% } elseif {%>
     </main>
 
     <%- include('partials/footer') %>
