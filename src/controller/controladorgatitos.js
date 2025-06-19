@@ -1,6 +1,6 @@
 const models = require("../models/modelsgatitos");
 
-const vervistagatitos = (req, res) => {
+const verVistaGatitos = (req, res) => {
   models.traerGatos()
   .then((gatitos) => {
       res.render("gatitos", { usuario: req.session.usuario || null , gatitos});
@@ -79,4 +79,4 @@ const agregarGatito = (req, res) => {
     });
 };
 
-module.exports = { vervistagatitos, agregarGatito, formularioGatito };
+module.exports = { verVistaGatitos, agregarGatito, formularioGatito };

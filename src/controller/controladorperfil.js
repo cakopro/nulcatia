@@ -1,7 +1,7 @@
 const models = require('../models/modelperfil');
 
 
-const verperfil = (req, res) => {
+const verPerfil = (req, res) => {
     const usuario = req.session.usuario;
     // Si no está logeado
     if (!usuario) return res.redirect('/login');
@@ -34,7 +34,7 @@ const vistaEditarPerfil = ((req,res) =>{
     })
 })
 
-const editarperfil = ((req,res) =>{
+const editarPerfil = ((req,res) =>{
     const {nombre_usuario, contraseña, correo, nombre, apellido, fecha_nacimiento, id_clan, experiencia} = req.body;
 
     const datosUsuario = {nombre_usuario, contraseña, correo}
@@ -58,7 +58,7 @@ const editarperfil = ((req,res) =>{
         });
 });
 
-const editarperfilSinGato = (req, res) => {
+const editarPerfilSinGato = (req, res) => {
     const { nombre_usuario, contraseña, correo } = req.body;
     const datosUsuario = { nombre_usuario, contraseña, correo };
 
@@ -90,4 +90,4 @@ const eliminarPerfil = (req,res) =>{
     })
 }
 
-module.exports = {verperfil, vistaEditarPerfil, editarperfil, eliminarPerfil, editarperfilSinGato}
+module.exports = {verPerfil, vistaEditarPerfil, editarPerfil, eliminarPerfil, editarPerfilSinGato}

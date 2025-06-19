@@ -1,5 +1,5 @@
-const verHome = ((req,res) => {
+const verPergaminos = ((req,res) => {
     res.render('index', { usuario: req.session.usuario || null });
 })
 
-module.exports = {verHome}
+module.exports = {verPergaminos}

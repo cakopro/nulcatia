@@ -1,10 +1,10 @@
 const models = require('../models/modelslogin');
 
-const verlogin = (req, res) => {
+const verLogin = (req, res) => {
   res.render('login', { error: null } );
 };
 
-const verificarlogin = (req, res) => {
+const verificarLogin = (req, res) => {
   const { nombre_usuario,contraseña, correo  } = req.body;
   models.verificarUsuario(nombre_usuario,contraseña, correo)
     .then((datos) => {
@@ -19,4 +19,4 @@ const verificarlogin = (req, res) => {
     });
 };
 
-module.exports = { verlogin, verificarlogin };
+module.exports = { verLogin, verificarLogin };

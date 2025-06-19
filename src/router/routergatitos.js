@@ -3,7 +3,7 @@ const router = Router()
 const controlador = require('../controller/controladorgatitos')
 
 
-router.get('/',controlador.vervistagatitos);
+router.get('/',controlador.verVistaGatitos);
 
 router.get('/nuevo',controlador.formularioGatito);
 
