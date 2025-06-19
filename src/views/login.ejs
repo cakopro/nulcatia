@@ -24,13 +24,36 @@
                         <label for="correo">email:</label>
                         <input type="email" id="correo" name="correo">
 
-                        <button type="submit" class="boton-acceder"> <span class="material-icons">login</span>Acceder</button>
+                        <button type="submit" class="boton-acceder"> <span
+                                class="material-icons">login</span>Acceder</button>
                         <a href="/register">¿No tienes cuenta?</a>
                     </form>
                 </div>
             </div>
         </main>
         <%- include('partials/footer') %>
+            <script>
+                const formulario = document.querySelector('.formulario-login');
+                const accederBtn = formulario.querySelector('.boton-acceder');
+                const campos = formulario.querySelectorAll('input');
+
+                function verificarCamposLlenos() {
+                    let todosLlenos = true;
+                    campos.forEach(campo => {
+                        if (!campo.value.trim()) {
+                            todosLlenos = false;
+                        }
+                    });
+                    accederBtn.disabled = !todosLlenos;
+                }
+
+                campos.forEach(campo => {
+                    campo.addEventListener('input', verificarCamposLlenos);
+                    campo.addEventListener('change', verificarCamposLlenos);
+                });
+
+                window.addEventListener('DOMContentLoaded', verificarCamposLlenos);
+            </script>
 </body>
 
 </html>

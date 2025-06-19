@@ -1,10 +1,40 @@
--primero se definio la base de datos a trabajar nulcatia con 6 entidades, sus relaciones y sus campos.
- se insertaron datos en las tablas.
- se itenfico los campos mas solicitados y se aplico indices.
- se creo una excepcion para no poder borrar un clan si esta referenciado a uno o muchos gatos
+# Proyecto Node.js + Visual Studio
 
--Se planteo las diferentes rutas a utilizar.
--Se planteo la arquitectura para la pagina web.
--Se inicio el proyecto instalando: npm i dotenv mysql2 express express-session express-validator ejs path | npm i nodemon -D
-esos fueron los comandos utilizados para instalar todo lo necesario para el proyecto
--Se creo las diferentes carpetas del proyecto y se configuro el package.json
+Este proyecto combina tecnologías de Node.js con Visual Studio. Utiliza **Express.js** como framework de servidor y está configurado para ejecutarse con `npm run start`.
+
+## Requisitos
+
+Antes de comenzar, asegúrate de tener instalado:
+
+- [Node.js y npm](https://nodejs.org/)
+- [Visual Studio 2022 o superior](https://visualstudio.microsoft.com/)
+- [.NET SDK (si se utiliza en el backend)](https://dotnet.microsoft.com/)
+
+## Instalación
+
+1. **Clona este repositorio o descarga el archivo `.rar` y extráelo.**
+
+   ```bash
+   git clone https://github.com/tuusuario/tu-repositorio.git
+   cd tu-repositorio
+Instala las dependencias necesarias usando npm:
+
+Puedes instalarlas todas con:
+```bash
+    npm install
+```
+O bien instalar una por una si lo prefieres:
+```bash
+    npm i dotnet
+    npm i ejs
+    npm i express
+    npm i express-session
+    npm i express-validator
+    npm i method-override
+    npm i mysql2
+    npm i path
+```
+## Inicia el servidor Express.
+```bash
+    npm run start  
+```

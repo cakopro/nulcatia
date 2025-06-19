@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/register.css">
     <title>Document</title>
 </head>
+
 <body>
     <%- include('partials/header') %>
         <main>
@@ -14,32 +16,63 @@
                     <h1>Registro</h1>
                     <form action="/register" method="post" class="formulario-register">
                         <div class="input-group">
-                        <label for="nombre_usuario">nombre:</label>
+                            <label for="nombre_usuario">nombre:</label>
 
-                        <input type="text" id="nombre_usuario" name="nombre_usuario" value="<%= datos?.nombre_usuario || '' %>">
-                        <% if (errores?.nombre_usuario){ %>
-                            <p class="error"><%=errores.nombre_usuario %> </p>
-                        <% } %>
+                            <input type="text" id="nombre_usuario" name="nombre_usuario"
+                                value="<%= datos?.nombre_usuario || '' %>">
+                            <% if (errores?.nombre_usuario){ %>
+                                <p class="error">
+                                    <%=errores.nombre_usuario %>
+                                </p>
+                                <% } %>
                         </div>
 
                         <div class="input-group">
-                        <label for="contraseña">contraseña:</label>
-                        <input type="password" id="contraseña" name="contraseña" value="<%= datos?.contraseña || '' %>">
+                            <label for="contraseña">contraseña:</label>
+                            <input type="password" id="contraseña" name="contraseña"
+                                value="<%= datos?.contraseña || '' %>">
 
                         </div>
                         <div class="input-group">
-                        <label for="correo">email:</label>
-                        <input type="email" id="correo" name="correo" value="<%= datos?.correo || '' %>">
-                        <% if (errores?.correo){ %>
-                            <p class="error"><%=errores.correo%> </p>
-                        <% } %>
+                            <label for="correo">email:</label>
+                            <input type="email" id="correo" name="correo" value="<%= datos?.correo || '' %>">
+                            <% if (errores?.correo){ %>
+                                <p class="error">
+                                    <%=errores.correo%>
+                                </p>
+                                <% } %>
                         </div>
-                        <button type="submit" class="boton-guardar"> <span class="material-icons">save</span>Registrar</button>
+                        <button type="submit" class="boton-guardar"> <span
+                                class="material-icons">save</span>Registrar</button>
                         <a href="/login" class="a-style">¿Ya tienes cuenta?</a>
                     </form>
                 </div>
             </div>
         </main>
-    <%- include('partials/footer') %>
+        <%- include('partials/footer') %>
+            <script>
+                const formulario = document.querySelector('.formulario-register');
+                const guardarBtn = formulario.querySelector('.boton-guardar');
+                const campos = formulario.querySelectorAll('input');
+
+                function verificarCamposLlenos() {
+                    let todosLlenos = true;
+                    campos.forEach(campo => {
+                        if (!campo.value.trim()) {
+                            todosLlenos = false;
+                        }
+                    });
+                    guardarBtn.disabled = !todosLlenos;
+                }
+
+                campos.forEach(campo => {
+                    campo.addEventListener('input', verificarCamposLlenos);
+                    campo.addEventListener('change', verificarCamposLlenos);
+                });
+
+                window.addEventListener('DOMContentLoaded', verificarCamposLlenos);
+            </script>
+
 </body>
+
 </html>

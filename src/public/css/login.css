@@ -58,3 +58,20 @@ a{
 .a:hover{
     background-color: #0d379a;
 }
+.boton-acceder {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.7em 1.5em;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.boton-acceder:disabled {
+  opacity: 0.5;
+  background-color: #999;
+  cursor: not-allowed;
+  pointer-events: none;
+}
