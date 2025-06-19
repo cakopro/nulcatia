@@ -57,22 +57,17 @@ CREATE TABLE ClanTerri (
 
 -- Inserciones
 
+-- Índices sugeridos
+CREATE INDEX idx_gatitos_id_clan ON Gatitos(id_clan);
+CREATE INDEX idx_usuarios_id_gato ON Usuarios(id_gato);
+CREATE INDEX idx_pergaminos_clan ON Pergaminos(clan);
+
+-- Inserciones
 INSERT INTO Clanes (nombre) VALUES
 ('Clan Backend'),
 ('Clan Frontend'),
 ('Clan de Versiones'),
 ('Clan de Seguridad');
-
-INSERT INTO Territorios (nombre, kilometros) VALUES
-('Bosques Binarios', 120),
-('Ríos de Paquetes', 85),
-('Montañas de Índices', 200),
-('Praderas de Pila', 150),
-('Archipiélago de APIs', 300),
-('Cuevas de Caché', 100),
-('Océanos de Objetos', 500),
-('Llanuras de Logs', 180),
-('Valles de Versiones', 220);
 
 INSERT INTO Gatitos (nombre, apellido, fecha_nacimiento, id_clan, experiencia) VALUES
 ('Felix', 'Socketpaw', '2019-03-15', 1, 'maestro'),
@@ -85,11 +80,16 @@ INSERT INTO Gatitos (nombre, apellido, fecha_nacimiento, id_clan, experiencia) V
 ('Vega', 'Docstring', '2019-08-29', 3, 'principiante'),
 ('Patch', 'Cyberscratch', '2020-01-18', 4, 'novato');
 
-INSERT INTO ClanTerri (id_clan, id_territorio) VALUES
-(1, 1), (1, 6), (1, 7),
-(2, 2), (2, 4),
-(3, 3), (3, 9),
-(4, 5), (4, 8);
+INSERT INTO Usuarios (nombre_usuario, contraseña, correo, rol, id_gato) VALUES
+('adminmaster', 'admin123', 'admin@nulcatia.cl', 'admin', 1),
+('gatofront', 'clave123', 'frontend@nulcatia.cl', 'normal', 2),
+('gatoadmin', 'seguro456', 'seguridad@nulcatia.cl', 'admin', 4),
+('cako', 'cako123', 'cakoofernandez@gmail.com', 'admin', 5),
+('orion_maestro', 'claveorion', 'orion@nulcatia.cl', 'normal', 3),
+('nova_novato', 'novapass', 'nova@nulcatia.cl', 'normal', 6),
+('ajax_version', 'rollback', 'ajax@nulcatia.cl', 'normal', 7),
+('vega_test', 'vegatest', 'vega@nulcatia.cl', 'normal', 8),
+('patch_cyber', 'cyber456', 'patch@nulcatia.cl', 'normal', 9);
 
 INSERT INTO Pergaminos (clan, titulo, texto) VALUES
 (1, 'El Núcleo del Servidor', 'Secretos del backend revelados'),
@@ -97,8 +97,19 @@ INSERT INTO Pergaminos (clan, titulo, texto) VALUES
 (3, 'Libro de Versionado', 'Códigos antiguos del control de cambios'),
 (4, 'Firewall Eterno', 'Protección ancestral contra amenazas digitales');
 
-INSERT INTO Usuarios (nombre_usuario, contraseña, correo, rol, id_gato) VALUES
-('adminmaster', 'admin123', 'admin@nulcatia.cl', 'admin', 1),
-('gatofront', 'clave123', 'frontend@nulcatia.cl', 'normal', 2),
-('gatoadmin', 'seguro456', 'seguridad@nulcatia.cl', 'admin', 4),
-('cako', 'cako123', 'cakoofernandez@gmail.com', 'admin', 5);
+INSERT INTO Territorios (nombre, kilometros) VALUES
+('Bosques Binarios', 120),
+('Ríos de Paquetes', 85),
+('Montañas de Índices', 200),
+('Praderas de Pila', 150),
+('Archipiélago de APIs', 300),
+('Cuevas de Caché', 100),
+('Océanos de Objetos', 500),
+('Llanuras de Logs', 180),
+('Valles de Versiones', 220);
+
+INSERT INTO ClanTerri (id_clan, id_territorio) VALUES
+(1, 1), (1, 6), (1, 7),
+(2, 2), (2, 4),
+(3, 3), (3, 9),
+(4, 5), (4, 8);

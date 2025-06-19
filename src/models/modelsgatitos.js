@@ -1,6 +1,21 @@
 const coneccion = require('../db/conecion')
 const TABLA = 'Gatitos'
 
+function traerGatos(){
+    return new Promise((resolve,rejects) => {
+        coneccion.query(`SELECT ${TABLA}.nombre, ${TABLA}.apellido , ${TABLA}.fecha_nacimiento, Clanes.nombre as clan, ${TABLA}.experiencia FROM ${TABLA} INNER JOIN
+            Clanes ON Gatitos.id_clan = Clanes.id_clan `
+            , (error,resultado) => {
+                if (error){
+                    return rejects(error)
+                }
+                resolve(resultado)
+            })
+    })
+}
+
+
+
 function traerClanes(){
     return new Promise((resolve,reject) => {
         coneccion.query(`SELECT id_clan, nombre FROM Clanes`, (error,resultado) =>{
@@ -49,4 +64,4 @@ function actualizarUsuario(id_gato, id_usuario){
     })
 }
 
-module.exports = {traerNombreCompleto, crearGatito, actualizarUsuario, traerClanes}
+module.exports = {traerNombreCompleto, crearGatito, actualizarUsuario, traerClanes, traerGatos}

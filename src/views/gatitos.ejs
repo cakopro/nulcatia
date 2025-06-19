@@ -11,25 +11,47 @@
 <body>
   <%- include('partials/header') %>
 
-  <main>
-    <table class="tabla">
-      <tr>
-        <th colspan="5">Gatitos</th>
-      </tr>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Clane</th>
-        <th>Territorio</th>
-        <th>Experiencia</th>
-      </tr>
-      <tr>
-        
-      </tr>
-    </table>
-  </main>
+    <main>
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th colspan="5">Gatitos</th>
+          </tr>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha nacimiento</th>
+            <th>Clan</th>
+            <th>Experiencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% gatitos.forEach(gato => { %>
+            <tr>
+              <td>
+                <%= gato.nombre %>
+              </td>
+              <td>
+                <%= gato.apellido %>
+              </td>
+              <td>
+                <%= gato.fecha_nacimiento.toISOString().slice(0,10) %>
+              </td> 
+              <td>
+                <%= gato.clan %>
+              </td>
+              <td>
+                <%= gato.experiencia %>
+              </td>
+              
+              </th>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+    </main>
 
-  <%- include('partials/footer') %>
+    <%- include('partials/footer') %>
 </body>
 
 </html>

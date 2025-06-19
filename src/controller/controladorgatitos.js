@@ -1,7 +1,15 @@
 const models = require("../models/modelsgatitos");
 
 const vervistagatitos = (req, res) => {
-  res.render("gatitos", { usuario: req.session.usuario || null });
+  models.traerGatos()
+  .then((gatitos) => {
+      res.render("gatitos", { usuario: req.session.usuario || null , gatitos});
+  })
+  .catch((error) => {
+    res.status(500).send("Error al cargar gatitos: " + error);
+  })
+
+  
 };
 
 const formularioGatito = (req, res) => {

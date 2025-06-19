@@ -25,7 +25,7 @@ Puedes instalarlas todas con:
 ```
 O bien instalar una por una si lo prefieres:
 ```bash
-    npm i dotnet
+    npm i dotenv
     npm i ejs
     npm i express
     npm i express-session
