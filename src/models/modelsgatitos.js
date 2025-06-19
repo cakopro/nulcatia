@@ -1,6 +1,7 @@
 const coneccion = require('../db/conecion')
 const TABLA = 'Gatitos'
 
+
 function traerGatos(){
     return new Promise((resolve,rejects) => {
         coneccion.query(`SELECT ${TABLA}.nombre, ${TABLA}.apellido , ${TABLA}.fecha_nacimiento, Clanes.nombre as clan, ${TABLA}.experiencia FROM ${TABLA} INNER JOIN
@@ -13,8 +14,6 @@ function traerGatos(){
             })
     })
 }
-
-
 
 function traerClanes(){
     return new Promise((resolve,reject) => {

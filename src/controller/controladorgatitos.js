@@ -8,8 +8,6 @@ const vervistagatitos = (req, res) => {
   .catch((error) => {
     res.status(500).send("Error al cargar gatitos: " + error);
   })
-
-  
 };
 
 const formularioGatito = (req, res) => {

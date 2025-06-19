@@ -1,7 +1,8 @@
 const {Router} = require('express');
 const router = Router()
+const controlador = require('../controller/controladorpergaminos')
 
-//router.get('/',controlador.verPergaminos);
+router.get('/',controlador.verVistaPergaminos);
 //
 //router.get('/nuevo',controlador.formularioPergaminos);
 //
@@ -14,4 +15,4 @@ const router = Router()
 //router.delete('/:id',controlador.eliminarPergamino);
 //
 //
-//module.exports = router
+module.exports = router
