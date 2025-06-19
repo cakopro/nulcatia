@@ -1,23 +1,28 @@
 const models = require('../models/modelperfil');
 
 
-const verperfil = ((req,res) => {
-    if (!req.session.usuario || !req.session.usuario.id_gato) {
-        return res.redirect('/home');
+const verperfil = (req, res) => {
+    const usuario = req.session.usuario;
+    // Si no está logeado
+    if (!usuario) return res.redirect('/login');
+
+    // Si no tiene gato, renderiza solo con usuario
+    if (!usuario.id_gato) {
+        return res.render('perfil', { usuario, Gato: null });
     }
-    const id = req.session.usuario.id_gato
+
+    const id = usuario.id_gato;
     models.traerDatosGato(id)
-    .then((Gato) =>{
-        const fecha = new Date(Gato.fecha_nacimiento);
-        const fechaFormateada = fecha.toLocaleDateString('es-CL'); // Chile
-        Gato.fecha_nacimiento = fechaFormateada;
-        res.render('perfil', { Gato, usuario: req.session.usuario });
-    })
-    .catch((error) => {
-        res.status(500).send('Error: ' + error);
-    })
-    
-})
+        .then((Gato) => {
+            const fecha = new Date(Gato.fecha_nacimiento);
+            const fechaFormateada = fecha.toLocaleDateString('es-CL');
+            Gato.fecha_nacimiento = fechaFormateada;
+            res.render('perfil', { Gato, usuario });
+        })
+        .catch((error) => {
+            res.status(500).send('Error: ' + error);
+        });
+};
 
 const vistaEditarPerfil = ((req,res) =>{
     models.traerClanes()

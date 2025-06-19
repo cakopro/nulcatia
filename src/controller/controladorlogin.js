@@ -1,7 +1,7 @@
 const models = require('../models/modelslogin');
 
 const verlogin = (req, res) => {
-  res.render('logins', { error: null } );
+  res.render('login', { error: null } );
 };
 
 const verificarlogin = (req, res) => {
@@ -9,7 +9,7 @@ const verificarlogin = (req, res) => {
   models.verificarUsuario(nombre_usuario,contraseña, correo)
     .then((datos) => {
       if (datos.length === 0) {
-        return res.render('logins', { error: 'Nombre o rol incorrecto' });
+        return res.render('login', { error: 'Nombre o rol incorrecto' });
       }
       req.session.usuario = datos[0]; 
       res.redirect('/home');

@@ -51,8 +51,8 @@
 }
 
 .lista_nav li {
-    font-size: 15px;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
 }
 
@@ -80,8 +80,8 @@
     color: white;
     /*color texto */
     padding: 6px 5px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
 }
 
 .icon-link:hover {

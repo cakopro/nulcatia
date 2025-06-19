@@ -2,7 +2,7 @@ const {Router} = require('express');
 const router = Router()
 const ROUTERCERRARSESION = require('./routercerrarsesion')
 //const ROUTERCLANES = require('./routerclanes')
-//const ROUTEREGISTER = require('./routeregister')
+const ROUTEREGISTER = require('./routeregister')
 const ROUTERGATITOS = require('./routergatitos')
 const ROUTERHOME = require('./routerhome')
 const ROUTERLOGIN = require('./routerlogin')
@@ -12,9 +12,9 @@ const ROUTERPERFIL = require('./routerperfil')
 
 router.use('/logout',ROUTERCERRARSESION);
 //router.use('/clanes',ROUTERCLANES);
-//router.use('/register',ROUTEREGISTER);
+router.use('/register',ROUTEREGISTER);
 router.use('/home',ROUTERHOME);
-router.use('/logins',ROUTERLOGIN);
+router.use('/login',ROUTERLOGIN);
 router.use('/perfil',ROUTERPERFIL);
 router.use('/gatitos',ROUTERGATITOS);
 //router.use('/pergaminos',ROUTERPERGAMINOS);

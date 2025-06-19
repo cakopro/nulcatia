@@ -11,54 +11,107 @@
 <body>
     <%- include('partials/header') %>
         <main>
-            <div class="container-perfil">
-                <div class="container-foto">
-                    <img src="image/aku.webp" alt="fotoperfil">
-                    <h1>Bienvenido <%= usuario.nombre_usuario %></h1>
-                </div>
-                <div class="container-datos">
-                    <div class="datos-usuario">
-                        <h2>Datos del usuario: </h2>
-                        <ul class="lista-usuario">
-                            <li>
-                                <strong>Nombre:</strong><%= usuario.nombre_usuario %>
-                            </li>
-                            <li>
-                                <strong>Correo:</strong><%= usuario.correo %>
-                            </li>
-                            <li>
-                                <strong>Rol:</strong><%= usuario.rol %>
-                            </li>
-                        </ul>
+            <% if(usuario.id_gato) { %>
+                <div class="container-perfil">
+                    <div class="container-foto">
+                        <img src="image/aku.webp" alt="fotoperfil">
+                        <h1>Bienvenido <%= usuario.nombre_usuario %>
+                        </h1>
                     </div>
-                    <div class="divisor"></div>
-                    <div class="datos-gato">
-                        <h2>Datos del gato:</h2>
-                        <ul class="lista-gato">
-                            <li>
-                                <strong>Gato:</strong><%= Gato.nombre %>
-                                
-                            </li>
-                            <li>
-                                <strong>Apellido:</strong><%= Gato.apellido %>
-                                
-                            </li>
-                            <li>
-                                <strong>Fecha de nacimiento:</strong><%= Gato.fecha_nacimiento %>
-                                
-                            </li>
-                            <li>
-                                <strong>Clan:</strong><%= Gato.clan %>
-                                
-                            </li>
-                            <li>
-                                <strong>Experiencia:</strong><%= Gato.experiencia %>
-                            </li>
-                        </ul>
+                    <div class="container-datos">
+                        <div class="datos-usuario">
+                            <h2>Datos del usuario: </h2>
+                            <ul class="lista-usuario">
+                                <li>
+                                    <strong>Nombre:</strong>
+                                    <%= usuario.nombre_usuario %>
+                                </li>
+                                <li>
+                                    <strong>Correo:</strong>
+                                    <%= usuario.correo %>
+                                </li>
+                                <li>
+                                    <strong>Rol:</strong>
+                                    <%= usuario.rol %>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="divisor"></div>
+                        <div class="datos-gato">
+                            <h2>Datos del gato:</h2>
+                            <ul class="lista-gato">
+                                <li>
+                                    <strong>Gato:</strong>
+                                    <%= Gato.nombre %>
+
+                                </li>
+                                <li>
+                                    <strong>Apellido:</strong>
+                                    <%= Gato.apellido %>
+
+                                </li>
+                                <li>
+                                    <strong>Fecha de nacimiento:</strong>
+                                    <%= Gato.fecha_nacimiento %>
+
+                                </li>
+                                <li>
+                                    <strong>Clan:</strong>
+                                    <%= Gato.clan %>
+
+                                </li>
+                                <li>
+                                    <strong>Experiencia:</strong>
+                                    <%= Gato.experiencia %>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="perfil/editar" class="boton_editar_perfil"> <span
+                                class="material-icons">edit_square</span> Editar perfil</a>
                     </div>
-                    <a href="perfil/editar" class="boton_editar_perfil"> <span class="material-icons">edit_square</span> Editar perfil</a> 
                 </div>
-            </div>
+                <% } else { %>
+                    <div class="container-perfil">
+                        <div class="container-foto">
+                            <img src="image/aku.webp" alt="fotoperfil">
+                            <h1>Bienvenido <%= usuario.nombre_usuario %>
+                            </h1>
+                        </div>
+                        <div class="container-datos">
+                            <div class="datos-usuario">
+                                <h2>Datos del usuario: </h2>
+                                <ul class="lista-usuario">
+                                    <li>
+                                        <strong>Nombre:</strong>
+                                        <%= usuario.nombre_usuario %>
+                                    </li>
+                                    <li>
+                                        <strong>Correo:</strong>
+                                        <%= usuario.correo %>
+                                    </li>
+                                    <li>
+                                        <strong>Rol:</strong>
+                                        <%= usuario.rol %>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="divisor"></div>
+                            <div class="seccion-agregar">
+                                <div class="imagen-agregar">
+                                    <img src="image/agragar_gato.png" alt="agregar_gato">
+                                </div>
+                                <div class="botones">
+                                    <a href="perfil/editar" class="boton_editar_perfil">
+                                        <span class="material-icons">edit_square</span> Editar perfil
+                                    </a>
+                                    <a href="gatitos/nuevo" class="boton_gatitos_nuevo">
+                                        <span class="material-icons">add</span> Crear gatito
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
         </main>
         <%- include('partials/footer') %>
 </body>

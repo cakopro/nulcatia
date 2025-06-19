@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/register.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/header') %>
+        <main>
+            <div class="centrar">
+                <div class="container-central">
+                    <h1>Registro</h1>
+                    <form action="/register" method="post" class="formulario-register">
+                        <div class="input-group">
+                        <label for="nombre_usuario">nombre:</label>
+
+                        <input type="text" id="nombre_usuario" name="nombre_usuario" value="<%= datos?.nombre_usuario || '' %>">
+                        <% if (errores?.nombre_usuario){ %>
+                            <p class="error"><%=errores.nombre_usuario %> </p>
+                        <% } %>
+                        </div>
+
+                        <div class="input-group">
+                        <label for="contraseña">contraseña:</label>
+                        <input type="password" id="contraseña" name="contraseña" value="<%= datos?.contraseña || '' %>">
+
+                        </div>
+                        <div class="input-group">
+                        <label for="correo">email:</label>
+                        <input type="email" id="correo" name="correo" value="<%= datos?.correo || '' %>">
+                        <% if (errores?.correo){ %>
+                            <p class="error"><%=errores.correo%> </p>
+                        <% } %>
+                        </div>
+                        <button type="submit" class="boton-guardar"> <span class="material-icons">save</span>Registrar</button>
+                        <a href="/login" class="a-style">¿Ya tienes cuenta?</a>
+                    </form>
+                </div>
+            </div>
+        </main>
+    <%- include('partials/footer') %>
+</body>
+</html>
