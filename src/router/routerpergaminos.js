@@ -8,7 +8,7 @@ router.get('/nuevopergamino',controlador.formularioPergaminos);
 
 router.post('/nuevopergamino', controlador.crearPergamino);
 
-// router.get('/:id/editar', controlador.formularioActualizarPergamino);
+router.get('/editarPergamino', controlador.formularioEditar);
 
 // router.put('/:id', controlador.actualizarPergamino);
 
