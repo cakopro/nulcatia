@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/editar.css">
+  <title>Perfil</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+    <main>
+      <% if(usuario.id_gato) { %>
+        <div class="centrar">
+          <div class="container-central">
+            <div class="container-foto">
+              <img src="/image/aku.webp" alt="fotoperfil">
+              <h1>Bienvenido <%= usuario.nombre_usuario %>
+              </h1>
+            </div>
+
+            <section class="section-form">
+              <h2>Editar informacion</h2>
+              <form action="/perfil/editar/<%= usuario.id_gato %>?_method=PUT" method="POST" class="formulario-editar">
+                <label for="nombre_usuario">Nombre:</label>
+                <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Ingrese su nuevo nombre">
+
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" id="contraseña" name="contraseña" placeholder="Ingresa su nueva contraseña">
+
+                <label for="correo">Email:</label>
+                <input type="email" id="correo" name="correo" placeholder="ingrese su nuevo correo">
+
+                <label for="nombre">Gato:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingresa el nuevo nombre del gato">
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="ingrese el nuevo apellido del gato">
+
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"
+                  placeholder="ingrese la nueva fecha de nacimiento">
+
+                <label for="id_clan">Clan:</label>
+                <select id="id_clan" name="id_clan">
+                  <% clanes.forEach(clan=> { %>
+                    <option value="<%= clan.id_clan %>">
+                      <%= clan.nombre %>
+                    </option>
+                    <% }) %>
+                </select>
+
+                <label for="experiencia">Experiencia:</label>
+                <select id="experiencia" name="experiencia">
+                  <option value="novato">Novato</option>
+                  <option value="principiante">Principiante</option>
+                  <option value="maestro">Maestro</option>
+                </select>
+
+                <div class="botones-formulario">
+                  <button type="submit" class="boton-guardar">
+                    <span class="material-icons">save</span>Guardar
+                  </button>
+                  <a href="/perfil" class="boton-cancelar">
+                    <span class="material-icons">close</span>Cancelar
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+    </main>
+    <script>
+      document.getElementById("formEliminar").addEventListener("submit", function (e) {
+        const confirmacion = confirm("¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.");
+        if (!confirmacion) {
+          e.preventDefault();
+        }
+      });
+    </script>
+    <script>
+      const formulario = document.querySelector('.formulario-editar');
+      const guardarBtn = formulario.querySelector('.boton-guardar');
+      const campos = formulario.querySelectorAll('input, select');
+
+      function verificarCamposLlenos() {
+        let todosLlenos = true;
+        campos.forEach(campo => {
+          if (!campo.value.trim()) {
+            todosLlenos = false;
+          }
+        });
+        guardarBtn.disabled = !todosLlenos;
+      }
+
+      campos.forEach(campo => {
+        campo.addEventListener('input', verificarCamposLlenos);
+        campo.addEventListener('change', verificarCamposLlenos);
+      });
+
+      window.addEventListener('DOMContentLoaded', verificarCamposLlenos);
+    </script>
+    <%- include('partials/footer') %>
+</body>
+
+</html>

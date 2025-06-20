@@ -59,6 +59,20 @@ const confirmarEliminarPergamino = (req,res) => {
 
 }
 
+const formularioEditar = (req, res) => {
+  models.traerClanes()
+    .then((clanes) => {
+      res.render("/pergaminos/editarPergamino", {
+        usuario: req.session.usuario || null,
+        clanes,
+        datos: {},
+      });
+    })
+    .catch((error) => {
+      res.status(500).send("Error al cargar editor: " + error);
+    });
+};
 
 
-module.exports = { verVistaPergaminos, formularioPergaminos, crearPergamino,confirmarEliminarPergamino };
+
+module.exports = { verVistaPergaminos, formularioPergaminos, crearPergamino,confirmarEliminarPergamino, formularioEditar };
