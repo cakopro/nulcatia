@@ -2,24 +2,32 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/gatitos.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/pergaminos.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Pergaminos</title>
 </head>
 
 <body>
   <%- include('partials/header') %>
   <main>
-    <table class="tabla">
+    <table class="tabla" id="tablaPergaminos">
       <thead>
         <tr>
-          <th colspan="3">Pergaminos</th>
+          <% if (usuario && usuario.rol === 'admin') { %>
+            <th colspan="5">Pergaminos</th>
+          <% } else { %>
+            <th colspan="3">Pergaminos</th>
+          <% } %>
         </tr>
         <tr>
           <th>Clan</th>
           <th>Título</th>
           <th>Texto</th>
+          <% if (usuario && usuario.rol === 'admin') { %>
+            <th colspan="2">Acciones</th>
+          <% } %>
         </tr>
       </thead>
       <tbody>
@@ -28,10 +36,33 @@
             <td><%= pergamino.clan %></td>
             <td><%= pergamino.titulo %></td>
             <td><%= pergamino.texto %></td>
+
+            <% if (usuario && usuario.rol === 'admin') { %>
+              <td class="acciones">
+                <form action="/pergaminos/<%= pergamino.id_pergamino %>?_method=DELETE" method="POST" class="formulario-eliminar">
+                  <button type="submit" class="boton-borrar">
+                    <span class="material-icons">delete</span> Eliminar
+                  </button>
+                </form>
+              </td>
+              <td class="acciones">
+                <form action="/pergaminos/<%= pergamino.id_pergamino %>/editar" method="GET" class="form-inline">
+                  <button type="submit" class="boton-actualizar">Actualizar</button>
+                </form>
+              </td>
+            <% } %>
           </tr>
         <% }); %>
       </tbody>
     </table>
+
+    <% if (usuario && usuario.rol === 'admin') { %>
+      <div class="boton-centro">
+        <form action="/pergaminos/nuevopergamino" method="GET">
+          <button type="submit" class="boton-agregar">Agregar Pergamino</button>
+        </form>
+      </div>
+    <% } %>
   </main>
 
   <%- include('partials/footer') %>

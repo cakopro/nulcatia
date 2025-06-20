@@ -4,15 +4,15 @@ const controlador = require('../controller/controladorpergaminos')
 
 router.get('/',controlador.verVistaPergaminos);
 
-// router.get('/nuevo',controlador.formularioPergaminos);
+router.get('/nuevopergamino',controlador.formularioPergaminos);
 
-// router.post('/', controlador.crearPergamino);
+router.post('/nuevopergamino', controlador.crearPergamino);
 
 // router.get('/:id/editar', controlador.formularioActualizarPergamino);
 
 // router.put('/:id', controlador.actualizarPergamino);
 
-// router.delete('/:id',controlador.eliminarPergamino);
+router.delete('/:id',controlador.confirmarEliminarPergamino);
 
 
 module.exports = router

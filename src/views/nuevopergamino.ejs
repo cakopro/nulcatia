@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/agregarpergamino.css" />
+  <title>Nuevo Pergamino</title>
+</head>
+
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <div class="centrar">
+      <div class="container-central">
+        <h1>Crear pergamino</h1>
+
+        <form action="/pergaminos/nuevopergamino" method="post" class="formulario-register">
+          <div class="input-group">
+            <label for="id_clan">Clan:</label>
+            <select id="id_clan" name="id_clan">
+              <% clanes.forEach(clan => { %>
+                <option value="<%= clan.id_clan %>" <%= datos?.id_clan == clan.id_clan ? 'selected' : '' %>>
+                  <%= clan.nombre %>
+                </option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" value="<%= datos?.titulo || '' %>" required />
+          </div>
+
+          <div class="input-group">
+            <label for="texto">Texto:</label>
+            <input type="text" id="texto" name="texto" value="<%= datos?.texto || '' %>" required />
+          </div>
+
+          <div class="botones">
+            <button type="submit" class="boton-guardar">Crear</button>
+            <a href="/pergaminos" class="boton-cancelar">Cancelar</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script>
+    const formulario = document.querySelector('.formulario-register');
+    const guardarBtn = formulario.querySelector('.boton-guardar');
+    const campos = formulario.querySelectorAll('input');
+
+    function verificarCamposLlenos() {
+      let todosLlenos = true;
+      campos.forEach(campo => {
+        if (!campo.value.trim()) {
+          todosLlenos = false;
+        }
+      });
+      guardarBtn.disabled = !todosLlenos;
+    }
+
+    campos.forEach(campo => {
+      campo.addEventListener('input', verificarCamposLlenos);
+      campo.addEventListener('change', verificarCamposLlenos);
+    });
+
+    window.addEventListener('DOMContentLoaded', verificarCamposLlenos);
+  </script>
+</body>
+
+</html>
