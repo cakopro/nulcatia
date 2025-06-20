@@ -1,0 +1,56 @@
+.form-inline {
+  display: inline-block;
+  margin: 0 6px; /* separación horizontal entre botones */
+}
+
+td.acciones {
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.boton-centro {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Botones con colores y efectos */
+button {
+  padding: 8px 12px;
+  margin: 2px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+form[action*="editar"] button {
+  background-color: #2196F3; /* Azul */
+  color: white;
+}
+
+form[action*="editar"] button:hover {
+  background-color: #1976D2;
+  transform: scale(1.05);
+}
+
+form[action*="eliminar"] button {
+  background-color: #f44336; /* Rojo */
+  color: white;
+}
+
+form[action*="eliminar"] button:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+form[action*="nuevo"] button {
+  background-color: #388E3C; /* Verde oscuro */
+  color: white;
+}
+
+form[action*="nuevo"] button:hover {
+  background-color: #2E7D32;
+  transform: scale(1.05);
+}
