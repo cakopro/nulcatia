@@ -15,9 +15,9 @@ main {
 
 /* Tabla */
 .tabla {
-  border-collapse: collapse;          /* Quita doble borde */
-  width: 70%;                         /* Ancho al 70% para mejor visibilidad */
-  margin: 20px auto;                  /* Centrado horizontal y margen */
+  border-collapse: collapse;         
+  width: 70%;                         
+  margin: 20px auto;                 
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   background-color: white;
   border-radius: 8px;
