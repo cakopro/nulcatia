@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/css/editar.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <title>Agregar Clan</title>
+</head>
+
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <div class="centrar">
+      <div class="container-central">
+        <div class="container-foto">
+          <h1>Agregar Nuevo Clan</h1>
+        </div>
+
+        <section class="section-form">
+          <form action="/clanes/agregarclan" method="POST" class="formulario-editar">
+            <label for="nombre">Nombre del Clan:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre del clan" required />
+
+            <label for="territorio">Territorio principal:</label>
+            <select id="territorio" name="territorio" required>
+              <% territorios.forEach(t => { %>
+                <option value="<%= t.id_territorio %>"><%= t.nombre %></option>
+              <% }) %>
+            </select>
+
+            <div class="botones-formulario">
+              <button type="submit" class="boton-guardar">
+                <span class="material-icons">save</span>Guardar
+              </button>
+              <a href="/clanes" class="boton-cancelar">
+                <span class="material-icons">close</span>Cancelar
+              </a>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+
+</html>

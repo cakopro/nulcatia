@@ -31,12 +31,11 @@ const agregarGatito = (req, res) => {
   const id_usuario = req.session.usuario.id_usuario;
 
   models
-    .traerNombreCompleto(nombre, apellido) //se cumplen todas las promesas
+    .traerNombreCompleto(nombre, apellido)
     .then((existeNombreCompleto) => {
       const errores = {};
       if (existeNombreCompleto)
-        errores.nombreCompleto = "Nombre completo del gato ya registrado"; // creamos un clave valor si alguna promesa devolvio un resultado
-
+        errores.nombreCompleto = "Nombre completo del gato ya registrado"; 
       if (Object.keys(errores).length > 0) {
         return models.traerClanes().then((clanes) => {
           res.render("nuevogato", {
@@ -45,10 +44,9 @@ const agregarGatito = (req, res) => {
             datos: req.body,
             clanes,
           });
-          return null; // detener ejecución
+          return null; 
         });
       }
-      //crear gato
       return models.crearGatito(
         nombre,
         apellido,
@@ -61,14 +59,11 @@ const agregarGatito = (req, res) => {
       if (!resultado) return;
 
       const id_gato = resultado.insertId;
-      // Actualizar usuario con id_gato
       return models.actualizarUsuario(id_gato, id_usuario).then(() => id_gato);
     })
     .then((id_gato) => {
       if (!id_gato) return;
-      // Actualizar la sesión
       req.session.usuario.id_gato = id_gato;
-      // Redirigir a perfil
       res.redirect("/perfil");
     })
     .catch((error) => {
