@@ -15,6 +15,41 @@ function traerPergaminos(){
     })
 }
 
+function traerClanes(){
+    return new Promise((resolve,reject) => {
+        coneccion.query(`SELECT id_clan, nombre FROM Clanes`, (error,resultado) =>{
+                if (error){
+                    return reject(error)
+                }
+                resolve(resultado)
+            })
+    })
+}
 
+function agregarPergamino(clan, titulo, texto){
+    return new Promise((resolve,reject) => {
+        coneccion.query(`INSERT INTO Pergaminos (clan, titulo, texto) VALUES (?,?,?)`, [clan, titulo, texto], (error,resultado) => {
+            if(error){
+                return reject(error)
+            }
+            resolve(resultado)
+        })
+    })
+}
 
-module.exports = {traerPergaminos}
+function eliminarPergamino(id_pergamino) {
+    return new Promise((resolve, reject) => {
+        coneccion.query(
+            `DELETE FROM ${TABLA} WHERE id_pergamino = ?`,
+            [id_pergamino],
+            (error, resultado) => {
+                if (error){
+                    return reject(error)
+                }
+                resolve(resultado)
+            }
+        );
+    });
+}
+
+module.exports = {traerPergaminos, traerClanes, agregarPergamino, eliminarPergamino}
