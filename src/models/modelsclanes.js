@@ -50,6 +50,72 @@ function eliminarRelacionesClan(id_clan) {
     );
   });
 }
+function actualizarClan(id_clan, nuevoNombre, nuevoIdTerritorio) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      console.log("🟡 Iniciando actualización del clan...");
+
+      // 1. Actualizar el nombre del clan
+      await new Promise((res, rej) => {
+        coneccion.query(
+          `UPDATE Clanes SET nombre = ? WHERE id_clan = ?`,
+          [nuevoNombre, id_clan],
+          (error, resultado) => {
+            if (error) return rej(error);
+            console.log("✅ Nombre actualizado:", resultado);
+            res();
+          }
+        );
+      });
+
+      // 2. Eliminar territorios existentes
+      await new Promise((res, rej) => {
+        coneccion.query(
+          `DELETE FROM ClanTerri WHERE id_clan = ?`,
+          [id_clan],
+          (error, resultado) => {
+            if (error) return rej(error);
+            console.log("✅ Territorios eliminados:", resultado.affectedRows);
+            res();
+          }
+        );
+      });
+
+      // 3. Insertar nuevos territorios (si hay)
+      if (nuevoIdTerritorio) {
+        const territorios = Array.isArray(nuevoIdTerritorio)
+          ? nuevoIdTerritorio
+          : [nuevoIdTerritorio];
+
+        console.log("🟡 Insertando territorios:", territorios);
+
+        for (const id_territorio of territorios) {
+          await new Promise((res, rej) => {
+            coneccion.query(
+              `INSERT INTO ClanTerri (id_clan, id_territorio) VALUES (?, ?)`,
+              [id_clan, id_territorio],
+              (error, resultado) => {
+                if (error) {
+                  console.error("❌ Error al insertar territorio:", error);
+                  return rej(error);
+                }
+                console.log("✅ Territorio insertado:", resultado);
+                res();
+              }
+            );
+          });
+        }
+      } else {
+        console.log("⚠️ No se especificaron nuevos territorios");
+      }
+
+      resolve({ mensaje: "Clan actualizado con éxito" });
+    } catch (error) {
+      console.error("❌ Error general en actualizarClan:", error);
+      reject(error);
+    }
+  });
+}
 
 function eliminarPergaminosPorClan(id_clan) {
   return new Promise((resolve, reject) => {
@@ -211,5 +277,6 @@ module.exports = {
   eliminarUsuariosPorGatos,
   eliminarPergaminosPorClan,
   existeUsuarioEnClan,
-  traerClanes
+  traerClanes,
+  actualizarClan
 };

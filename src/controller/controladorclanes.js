@@ -73,17 +73,22 @@ const mostrarFormularioEditar = async (req, res) => {
 
 const procesarEditarClan = (req, res) => {
     const id = req.params.id;
-    const { nombre } = req.body;
+    const { nombre, territorio } = req.body;
 
     if (!req.session.usuario || req.session.usuario.rol !== "admin") {
         return res.status(403).send("Acceso denegado");
     }
 
+    const id_territorio = Number(territorio);
+
     models
-        .actualizarClan(id, nombre)
+        .actualizarClan(id, nombre, id_territorio)
         .then(() => res.redirect("/clanes"))
-        .catch((error) => res.status(500).send("Error al actualizar clan: " + error));
+        .catch((error) =>
+            res.status(500).send("Error al actualizar clan: " + error)
+        );
 };
+
 
 const eliminarClan = async (req, res) => {
   const id = req.params.id;
