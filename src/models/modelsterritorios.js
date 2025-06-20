@@ -1,32 +1,90 @@
-const coneccion = require('../db/conecion')
+const conexion = require('../db/conecion');
+const TABLA = 'Territorios';
 
 function traerTerritorios() {
     return new Promise((resolve, reject) => {
-        coneccion.query(
-            `SELECT * FROM Territorios ORDER BY nombre`,
-            (error, resultados) => {
-                if (error) reject(error);
-                else resolve(resultados);
-            }
-        );
+        const query = `
+            SELECT 
+                Territorios.id_territorio, 
+                Territorios.nombre, 
+                Territorios.kilometros 
+            FROM Territorios`;
+        conexion.query(query, (error, resultado) => {
+            if (error) return reject(error);
+            resolve(resultado);
+        });
     });
 }
 
-function traerTerritorioPorClan(id_clan) {
+
+async function crearTerritorio(nombre, kilometros) {
     return new Promise((resolve, reject) => {
-        coneccion.query(
-            `SELECT t.id_territorio, t.nombre FROM Territorios t
-       JOIN ClanTerri ct ON t.id_territorio = ct.id_territorio
-       WHERE ct.id_clan = ? LIMIT 1`,
-            [id_clan],
-            (error, resultados) => {
-                if (error) reject(error);
-                else resolve(resultados[0] || null);
-            }
-        );
+        const query = `INSERT INTO Territorios (nombre, kilometros) VALUES (?, ?)`;
+        conexion.query(query, [nombre, kilometros], (error, resultado) => {
+            if (error) return reject(error);
+            resolve(resultado[0])
+        });
     });
 }
+
+const traerTerritorioPorId = (id) => {
+  return new Promise((resolve, reject) => {
+    const sql = "SELECT * FROM territorios WHERE id_territorio = ?";
+    conexion.query(sql, [id], (err, results) => {
+      if (err) return reject(err);
+      resolve(results[0]);
+    });
+  });
+};
+
+const actualizarTerritorio = (id, nombre, kilometros) => {
+  return new Promise((resolve, reject) => {
+    const sql = "UPDATE territorios SET nombre = ?, kilometros = ? WHERE id_territorio = ?";
+    conexion.query(sql, [nombre, kilometros, id], (err, result) => {
+      if (err) return reject(err);
+      resolve(result);
+    });
+  });
+};
+
+function existeRelacionEnClanterri(idTerritorio) {
+  return new Promise(function(resolve, reject) {
+    const sql = "SELECT COUNT(*) AS total FROM clanterri WHERE id_territorio = ?";
+    conexion.query(sql, [idTerritorio], function(err, results) {
+      if (err) return reject(err);
+      resolve(results[0].total > 0);
+    });
+  });
+}
+
+function eliminarTerritorio(idTerritorio) {
+  return new Promise(function(resolve, reject) {
+    const sql = "DELETE FROM territorios WHERE id_territorio = ?";
+    conexion.query(sql, [idTerritorio], function(err, results) {
+      if (err) return reject(err);
+      resolve(results);
+    });
+  });
+}
+
+
+
+function traerClanes() {
+    return new Promise((resolve, reject) => {
+        conexion.query(`SELECT id_clan, nombre FROM Clanes`, (error, resultado) => {
+            if (error) return reject(error);
+            resolve(resultado);
+        });
+    });
+}
+
+
 module.exports = {
     traerTerritorios,
-    traerTerritorioPorClan
+    crearTerritorio,
+    traerClanes,
+    actualizarTerritorio,
+    eliminarTerritorio,
+    traerTerritorioPorId,
+    existeRelacionEnClanterri
 };

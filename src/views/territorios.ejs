@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/css/territorio.css">
+  <title>Territorios</title>
+</head>
+
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <% if (usuario && usuario.rol === 'admin') { %>
+      <div style="text-align: center; margin: 20px 0;">
+        <a href="/territorios/agregarterritorio" class="btn-agregar">➕ Agregar Territorio</a>
+      </div>
+    <% } %>
+
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th colspan="<%= (usuario && usuario.rol === 'admin') ? 3 : 2 %>">Territorios</th>
+        </tr>
+        <tr>
+          <th>Nombre</th>
+          <th>Kilómetros</th>
+          <% if (usuario && usuario.rol === 'admin') { %>
+            <th>Acciones</th>
+          <% } %>
+        </tr>
+      </thead>
+      <tbody>
+        <% territorios.forEach(t => { %>
+          <tr>
+            <td><%= t.nombre %></td>
+            <td><%= t.kilometros %> km</td>
+            <% if (usuario && usuario.rol === 'admin') { %>
+              <td>
+                <a href="/territorios/<%= t.id_territorio %>/editar" class="btn-editar">Editar</a>
+                <form action="/territorios/<%= t.id_territorio %>?_method=DELETE" method="POST" onsubmit="return confirm('¿Eliminar este territorio?');" style="display:inline;">
+                  <button type="submit" class="btn-eliminar">Eliminar</button>
+                </form>
+              </td>
+            <% } %>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+
+</html>

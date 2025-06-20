@@ -1,18 +1,18 @@
-const {Router} = require('express');
-const router = Router()
+const express = require('express');
+const router = express.Router();
+const controlador = require('../controller/controladorterritorio');
 
 
-// router.get('/',controlador.verTerritorios);
+router.get('/', controlador.verVistaTerritorios);
 
-// router.get('/nuevo',controlador.formularioTerritorio);
+router.get('/agregarterritorio', controlador.formularioTerritorio);
 
-// router.post('/', controlador.crearTerritorio);
+router.post('/', controlador.agregarTerritorio);
 
-// router.get('/:id/editar', controlador.formularioEditarTerritorio);
+router.get('/:id/editar', controlador.formularioEditarTerritorio);
 
-// router.put('/:id', controlador.actualizarTerritorio);
+router.put('/:id', controlador.actualizarTerritorio); 
 
-// router.delete('/:id',controlador.eliminarTerritorio);
+router.delete('/:id', controlador.eliminarTerritorio);
 
-
-//module.exports = router
+module.exports = router;

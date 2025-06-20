@@ -8,7 +8,7 @@ const ROUTERHOME = require('./routerhome')
 const ROUTERLOGIN = require('./routerlogin')
 const ROUTERPERFIL = require('./routerperfil')
 const ROUTERPERGAMINOS = require('./routerpergaminos')
-//const ROUTERTERRITORIO = require('./routerterritorio')
+const ROUTERTERRITORIO = require('./routerterritorio')
 
 router.use('/logout',ROUTERCERRARSESION);
 router.use('/clanes',ROUTERCLANES);
@@ -18,7 +18,7 @@ router.use('/login',ROUTERLOGIN);
 router.use('/perfil',ROUTERPERFIL);
 router.use('/gatitos',ROUTERGATITOS);
 router.use('/pergaminos',ROUTERPERGAMINOS);
-//router.use('/territorios',ROUTERTERRITORIO);
+router.use('/territorios',ROUTERTERRITORIO);
 
 module.exports = router;
 
