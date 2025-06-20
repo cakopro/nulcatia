@@ -51,5 +51,31 @@ function eliminarPergamino(id_pergamino) {
         );
     });
 }
+function actualizarPergamino(id, clan, titulo, texto) {
+  return new Promise((resolve, reject) => {
+    coneccion.query(
+      `UPDATE Pergaminos SET clan = ?, titulo = ?, texto = ? WHERE id_pergamino = ?`,
+      [clan, titulo, texto, id],
+      (error, resultado) => {
+        if (error) return reject(error);
+        resolve(resultado);
+      }
+    );
+  });
+}
 
-module.exports = {traerPergaminos, traerClanes, agregarPergamino, eliminarPergamino}
+
+function traerPergaminoPorId(id) {
+  return new Promise((resolve, reject) => {
+    coneccion.query(
+      `SELECT id_pergamino, clan, titulo, texto FROM Pergaminos WHERE id_pergamino = ?`,
+      [id],
+      (error, resultado) => {
+        if (error) return reject(error);
+        resolve(resultado[0]); // solo 1 registro
+      }
+    );
+  });
+}
+
+module.exports = {traerPergaminos, traerClanes, agregarPergamino, eliminarPergamino, actualizarPergamino, traerPergaminoPorId}

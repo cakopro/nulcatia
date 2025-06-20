@@ -60,12 +60,19 @@ const confirmarEliminarPergamino = (req,res) => {
 }
 
 const formularioEditar = (req, res) => {
-  models.traerClanes()
-    .then((clanes) => {
-      res.render("/pergaminos/editarPergamino", {
+  const { id } = req.params; 
+  Promise.all([
+    models.traerClanes(),
+    models.traerPergaminoPorId(id)
+  ])
+    .then(([clanes, pergamino]) => {
+      if (!pergamino) {
+        return res.status(404).send("Pergamino no encontrado");
+      }
+      res.render("editarPergamino", {
         usuario: req.session.usuario || null,
         clanes,
-        datos: {},
+        datos: pergamino,  
       });
     })
     .catch((error) => {
@@ -74,5 +81,17 @@ const formularioEditar = (req, res) => {
 };
 
 
+const actualizarPergamino = (req, res) => {
+  const { id } = req.params;
+  const { clan, titulo, texto } = req.body;
 
-module.exports = { verVistaPergaminos, formularioPergaminos, crearPergamino,confirmarEliminarPergamino, formularioEditar };
+  models.actualizarPergamino(id, clan, titulo, texto)
+    .then(() => {
+      res.redirect('/pergaminos');
+    })
+    .catch(error => {
+      res.status(500).send('Error al actualizar pergamino: ' + error);
+    });
+};
+
+module.exports = { verVistaPergaminos, formularioPergaminos, crearPergamino,confirmarEliminarPergamino, formularioEditar, actualizarPergamino };
