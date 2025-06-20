@@ -15,6 +15,35 @@ function traerPergaminos(){
     })
 }
 
+function traerClanDelGato(id_gato){
+  return new Promise((resolve,reject) => {
+    coneccion.query(`SELECT Clanes.id_clan, Clanes.nombre FROM Gatitos INNER JOIN Clanes ON Gatitos.id_clan = Clanes.id_clan 
+      WHERE id_gato = ?`, [id_gato],(error,resultado) => {
+      if (error){
+        reject(error)
+      }
+      if (resultado.length == 0) return resolve(null)
+      resolve(resultado[0]);
+    })
+  })
+}
+
+function traerPergaminosPorClan(id_clan){
+  return new Promise((resolve,reject) => {
+    coneccion.query(`SELECT Pergaminos.id_pergamino, Clanes.nombre AS clan, Pergaminos.titulo, Pergaminos.texto
+       FROM Pergaminos
+       INNER JOIN Clanes ON Pergaminos.clan = Clanes.id_clan
+       WHERE Pergaminos.clan = ?`, [id_clan], (error, resultado) => {
+        if (error){
+          reject(error)
+        }
+        resolve(resultado)
+       })
+  })
+
+}
+
+//para actualizar y eliminar:
 function traerClanes(){
     return new Promise((resolve,reject) => {
         coneccion.query(`SELECT id_clan, nombre FROM Clanes`, (error,resultado) =>{
@@ -78,4 +107,4 @@ function traerPergaminoPorId(id) {
   });
 }
 
-module.exports = {traerPergaminos, traerClanes, agregarPergamino, eliminarPergamino, actualizarPergamino, traerPergaminoPorId}
+module.exports = {traerPergaminos, traerClanes, agregarPergamino, eliminarPergamino, actualizarPergamino, traerPergaminoPorId, traerClanDelGato,traerPergaminosPorClan}

@@ -1,16 +1,35 @@
 const models = require("../models/modelspergaminos");
 
 const verVistaPergaminos = (req, res) => {
-  models.traerPergaminos()
+  const usuario = req.session.usuario || null;
+
+  if (!usuario){
+    models.traerPergaminos()
     .then((pergaminos) => {
-      res.render("pergaminos", {
-        usuario: req.session.usuario || null,
-        pergaminos,
-      });
+      res.render('pergaminos',{usuario,pergaminos, nombreClan:null})
     })
     .catch((error) => {
-      res.status(500).send("Error al cargar pergaminos: " + error);
-    });
+      res.status(500).send("error al cargar pergaminos" + error)
+    })
+  } else {
+    models.traerClanDelGato(usuario.id_gato)
+    .then((claninfo) => {
+      if (!claninfo){
+        return models.traerPergaminos()
+        .then((pergaminos) =>{
+          res.render('pergaminos', {usuario,pergaminos, nombreClan:null})
+        })
+      }else {
+        return models.traerPergaminosPorClan(claninfo.id_clan)
+        .then((pergaminos) => {
+          res.render('pergaminos', {usuario, pergaminos, id_clan: claninfo.id_clan, nombreClan: claninfo.nombre }) 
+        })
+      }
+    })
+    .catch((error) => {
+      res.status(500).send('error al cargar pergaminos' + error)
+    })
+  }
 };
 
 const formularioPergaminos = (req, res) => {
