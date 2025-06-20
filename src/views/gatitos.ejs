@@ -11,46 +11,52 @@
 <body>
   <%- include('partials/header') %>
 
-    <main>
-      <table class="tabla">
-        <thead>
-          <tr>
-            <th colspan="5">Gatitos</th>
-          </tr>
-          <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Fecha nacimiento</th>
-            <th>Clan</th>
-            <th>Experiencia</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% gatitos.forEach(gato => { %>
-            <tr>
-              <td>
-                <%= gato.nombre %>
-              </td>
-              <td>
-                <%= gato.apellido %>
-              </td>
-              <td>
-                <%= gato.fecha_nacimiento.toISOString().slice(0,10) %>
-              </td> 
-              <td>
-                <%= gato.clan %>
-              </td>
-              <td>
-                <%= gato.experiencia %>
-              </td>
-              
-            </tr>
-            <% }); %>
-        </tbody>
-      </table>
-    </main>
+  <main>
+    <div style="display: flex; justify-content: end; margin-bottom: 1em;">
+      <input type="text" class="barra-busqueda" id="filtroGatitos" placeholder="Buscar gatito..." style="padding: 0.4em 0.6em; width: 80px; border-radius: 6px;">
+    </div>
 
-    <%- include('partials/footer') %>
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th colspan="5">Gatitos</th>
+        </tr>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Fecha nacimiento</th>
+          <th>Clan</th>
+          <th>Experiencia</th>
+        </tr>
+      </thead>
+      <tbody id="tablaGatitos">
+        <% gatitos.forEach(gato => { %>
+          <tr>
+            <td><%= gato.nombre %></td>
+            <td><%= gato.apellido %></td>
+            <td><%= gato.fecha_nacimiento.toISOString().slice(0,10) %></td>
+            <td><%= gato.clan %></td>
+            <td><%= gato.experiencia %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script>
+    document.getElementById('filtroGatitos').addEventListener('input', function () {
+      const filtro = this.value.toLowerCase();
+      const filas = document.querySelectorAll('#tablaGatitos tr');
+
+      filas.forEach(fila => {
+        const nombre = fila.children[0].textContent.toLowerCase();
+        const apellido = fila.children[1].textContent.toLowerCase();
+        fila.style.display = (nombre.includes(filtro) || apellido.includes(filtro)) ? '' : 'none';
+      });
+    });
+  </script>
 </body>
 
 </html>

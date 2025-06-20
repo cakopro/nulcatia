@@ -2,81 +2,88 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/gatitos.css" />
-  <title>Clanes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/clanes.css">
+    <title>Clanes</title>
 </head>
 
 <body>
-  <%- include('partials/header') %>
+    <%- include('partials/header') %>
 
     <main>
-      <h1>Clanes</h1>
+<div style="margin-bottom: 1em;">
+  <input  type="text" id="filtroClan" class="barra-busqueda" placeholder="Buscar clan por nombre..." style="padding: 0.5em; width: 100%; max-width: 80px;">
+</div>
+<h1>Clanes</h1>
 
-      <% if (error) { %>
-        <div class="alerta-error">
-          <%= error %>
-        </div>
-        <% } else if (mensaje) { %>
-          <div class="alerta-ok">
-            <%= mensaje %>
-          </div>
-          <% } %>
+<% if (error) { %>
+  <div class="alerta-error">
+    <%= error %>
+  </div>
+<% } else if (mensaje) { %>
+  <div class="alerta-ok">
+    <%= mensaje %>
+  </div>
+<% } %>
 
-            <% if (usuario?.rol==='admin' ) { %>
-              <a href="/clanes/agregarclan" class="boton-guardar"
-                style="margin-bottom: 1em; display: inline-flex; align-items: center; gap: 4px;">
-                <span class="material-icons">add</span>Agregar Clan
-              </a>
-              <% } %>
-
-                <table class="tabla">
-                  <thead>
-                    <tr>
-                      <th colspan="<%= usuario?.rol === 'admin' ? 4 : 3 %>">Clanes</th>
-                    </tr>
-                    <tr>
-                      <th>Nombre del Clan</th>
-                      <th>Territorios</th>
-                      <% if (usuario?.rol==='admin' ) { %>
-                        <th>Acciones</th>
-                        <% } %>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% clanes.forEach(clan=> { %>
-                      <tr>
-                        <td>
-                          <%= clan.nombre %>
-                        </td>
-                        <td>
-                          <%= clan.territorios || 'Sin territorios' %>
-                        </td>
-                        <% if (usuario?.rol==='admin' ) { %>
-                          <td class="botones-formulario" style="display: flex; gap: 6px;">
-                            <a href="/clanes/editarclan/<%= clan.id_clan %>" class="boton-guardar"
-                              style="display: inline-flex; align-items: center; gap: 4px;">
-                              <span class="material-icons">edit</span> Actualizar
-                            </a>
-
-                            <form method="POST" action="/clanes/eliminar/<%= clan.id_clan %>"
-                              onsubmit="return confirm('¿Eliminar este clan?');" style="display: inline">
-                              <button type="submit" class="boton-cancelar"
-                                style="display: inline-flex; align-items: center; gap: 4px;">
-                                <span class="material-icons">delete</span> Borrar
-                              </button>
-                            </form>
-                          </td>
-                          <% } %>
-                      </tr>
-                      <% }) %>
-                  </tbody>
-                </table>
+<% if (usuario?.rol === 'admin') { %>
+  <a href="/clanes/agregarclan" class="boton-guardar"
+    style="margin-bottom: 1em; display: inline-flex; align-items: center; gap: 4px;">
+    <span class="material-icons">add</span>Agregar Clan
+  </a>
+<% } %>
+<table class="tabla">
+  <thead>
+    <tr>
+      <th colspan="<%= usuario?.rol === 'admin' ? 4 : 3 %>">Clanes</th>
+    </tr>
+    <tr>
+      <th>Nombre del Clan</th>
+      <th>Territorios</th>
+      <% if (usuario?.rol === 'admin') { %>
+        <th>Acciones</th>
+      <% } %>
+    </tr>
+  </thead>
+  <tbody id="tablaClanes">
+    <% clanes.forEach(clan => { %>
+      <tr>
+        <td><%= clan.nombre %></td>
+        <td><%= clan.territorios || 'Sin territorios' %></td>
+        <% if (usuario?.rol === 'admin') { %>
+          <td class="botones-formulario" style="display: flex; gap: 6px;">
+            <a href="/clanes/editarclan/<%= clan.id_clan %>" class="boton-guardar"
+              style="display: inline-flex; align-items: center; gap: 4px;">
+              <span class="material-icons">edit</span> Actualizar
+            </a>
+            <form method="POST" action="/clanes/eliminar/<%= clan.id_clan %>" onsubmit="return confirm('¿Eliminar este clan?');" style="display: inline">
+              <button type="submit" class="boton-cancelar"
+                style="display: inline-flex; align-items: center; gap: 4px;">
+                <span class="material-icons">delete</span> Borrar
+              </button>
+            </form>
+          </td>
+        <% } %>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
     </main>
 
     <%- include('partials/footer') %>
+
+<script>
+  document.getElementById('filtroClan').addEventListener('input', function () {
+    const filtro = this.value.toLowerCase();
+    const filas = document.querySelectorAll('#tablaClanes tr');
+
+    filas.forEach(fila => {
+      const nombre = fila.children[0].textContent.toLowerCase();
+      fila.style.display = nombre.includes(filtro) ? '' : 'none';
+    });
+  });
+</script>
 </body>
 
 </html>
