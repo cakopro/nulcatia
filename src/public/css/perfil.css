@@ -3,6 +3,7 @@ body {
     flex-direction: column;
     min-height: 100vh; 
     margin: 0;
+    margin-bottom: 3px;
 }
 
 main {
@@ -31,7 +32,7 @@ footer {
     gap: 50px;
     grid-column: 1/2;
     grid-template-rows: 1/1;
-    background-color: blue;
+    background-color: aquamarine;
     border-bottom: 2px solid black; 
     padding-bottom: 20px;
 }
@@ -43,7 +44,7 @@ footer {
 }
 
 .container-datos{
-    background-color: aquamarine;
+    background-color: rgb(204, 204, 239);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -87,6 +88,7 @@ footer {
     border-radius: 8px;
     font-weight: bold;
     border: 20px;
+    margin-bottom: 20px;
     align-items: center;
     display: flex;
 }

@@ -1,8 +1,14 @@
+body{
+  background: linear-gradient(to right, #232526, #414345);
+
+}
+
 .centrar {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 50px 0;
+  
 }
 
 .container-central {
@@ -12,12 +18,14 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 500px;
+  background: linear-gradient(to right, #232526, #414345);
+
 }
 
 .container-central h1 {
   text-align: center;
   margin-bottom: 25px;
-  color: #333;
+  color: #0b82e4;
 }
 
 .formulario-register .input-group {
@@ -29,7 +37,7 @@
 .input-group label {
   margin-bottom: 5px;
   font-weight: bold;
-  color: #444;
+  color: white;
 }
 
 .input-group input,

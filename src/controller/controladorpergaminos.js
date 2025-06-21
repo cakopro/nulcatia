@@ -33,16 +33,23 @@ const verVistaPergaminos = (req, res) => {
 };
 
 const formularioPergaminos = (req, res) => {
-  models.traerClanes()
-    .then((clanes) => {
+  const usuario = req.session.usuario;
+  if (!usuario || usuario.rol !== 'admin') {
+    return res.status(403).send('Acceso denegado');
+  }
+  models.traerClanDelGato(usuario.id_gato)
+    .then((claninfo) => {
+      if (!claninfo) {
+        return res.status(500).send("Error: no se pudo determinar el clan");
+      }
       res.render("nuevopergamino", {
-        usuario: req.session.usuario || null,
-        clanes,
+        usuario,
+        id_clan: claninfo.id_clan,
         datos: {},
       });
     })
     .catch((error) => {
-      res.status(500).send("Error al cargar clanes: " + error);
+      res.status(500).send("Error al cargar datos del clan: " + error);
     });
 };
 
@@ -54,15 +61,12 @@ const crearPergamino = (req, res) => {
       res.redirect("/pergaminos");
     })
     .catch((error) => {
-      console.error("Error al agregar pergamino:", error);
-      models.traerClanes().then((clanes) => {
-        res.render("nuevopergamino", {
-          usuario: req.session.usuario || null,
-          clanes,
-          datos: { id_clan, titulo, texto },
-          error: "Hubo un error al crear el pergamino. Inténtalo de nuevo."
-        });
-      });
+      res.render("nuevopergamino", {
+      usuario: req.session.usuario || null,
+      id_clan,
+      datos: { titulo, texto },
+      error: "Hubo un error al crear el pergamino. Inténtalo de nuevo."
+});
     });
 };
 
@@ -73,24 +77,25 @@ const confirmarEliminarPergamino = (req,res) => {
     res.redirect('/pergaminos')
   })
   .catch((error) => {
-    res.status(500).send("Error al cargar clanes: " + error);
+    res.status(500).send("Error al cargar pergaminos: " + error);
   })
 
 }
 
 const formularioEditar = (req, res) => {
+  const usuario = req.session.usuario;
+  if (!usuario || usuario.rol !== 'admin') {
+    return res.status(403).send('Acceso denegado');
+  }
   const { id } = req.params; 
-  Promise.all([
-    models.traerClanes(),
+
     models.traerPergaminoPorId(id)
-  ])
-    .then(([clanes, pergamino]) => {
+    .then((pergamino) => {
       if (!pergamino) {
         return res.status(404).send("Pergamino no encontrado");
       }
       res.render("editarPergamino", {
         usuario: req.session.usuario || null,
-        clanes,
         datos: pergamino,  
       });
     })
@@ -102,9 +107,9 @@ const formularioEditar = (req, res) => {
 
 const actualizarPergamino = (req, res) => {
   const { id } = req.params;
-  const { clan, titulo, texto } = req.body;
+  const { titulo, texto } = req.body;
 
-  models.actualizarPergamino(id, clan, titulo, texto)
+  models.actualizarPergamino(id, titulo, texto)
     .then(() => {
       res.redirect('/pergaminos');
     })

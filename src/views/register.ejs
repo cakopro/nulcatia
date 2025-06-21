@@ -16,7 +16,7 @@
                     <h1>Registro</h1>
                     <form action="/register" method="post" class="formulario-register">
                         <div class="input-group">
-                            <label for="nombre_usuario">nombre:</label>
+                            <label for="nombre_usuario">Nombre:</label>
 
                             <input type="text" id="nombre_usuario" name="nombre_usuario"
                                 value="<%= datos?.nombre_usuario || '' %>">
@@ -28,13 +28,13 @@
                         </div>
 
                         <div class="input-group">
-                            <label for="contraseña">contraseña:</label>
+                            <label for="contraseña">Contraseña:</label>
                             <input type="password" id="contraseña" name="contraseña"
                                 value="<%= datos?.contraseña || '' %>">
 
                         </div>
                         <div class="input-group">
-                            <label for="correo">email:</label>
+                            <label for="correo">Email:</label>
                             <input type="email" id="correo" name="correo" value="<%= datos?.correo || '' %>">
                             <% if (errores?.correo){ %>
                                 <p class="error">

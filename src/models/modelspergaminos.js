@@ -30,7 +30,7 @@ function traerClanDelGato(id_gato){
 
 function traerPergaminosPorClan(id_clan){
   return new Promise((resolve,reject) => {
-    coneccion.query(`SELECT Pergaminos.id_pergamino, Clanes.nombre AS clan, Pergaminos.titulo, Pergaminos.texto
+    coneccion.query(`SELECT Pergaminos.id_pergamino, Pergaminos.clan as id_clan, Clanes.nombre AS clan, Pergaminos.titulo, Pergaminos.texto
        FROM Pergaminos
        INNER JOIN Clanes ON Pergaminos.clan = Clanes.id_clan
        WHERE Pergaminos.clan = ?`, [id_clan], (error, resultado) => {
@@ -44,16 +44,7 @@ function traerPergaminosPorClan(id_clan){
 }
 
 //para actualizar y eliminar:
-function traerClanes(){
-    return new Promise((resolve,reject) => {
-        coneccion.query(`SELECT id_clan, nombre FROM Clanes`, (error,resultado) =>{
-                if (error){
-                    return reject(error)
-                }
-                resolve(resultado)
-            })
-    })
-}
+
 
 function agregarPergamino(clan, titulo, texto){
     return new Promise((resolve,reject) => {
@@ -80,11 +71,11 @@ function eliminarPergamino(id_pergamino) {
         );
     });
 }
-function actualizarPergamino(id, clan, titulo, texto) {
+function actualizarPergamino(id, titulo, texto) {
   return new Promise((resolve, reject) => {
     coneccion.query(
-      `UPDATE Pergaminos SET clan = ?, titulo = ?, texto = ? WHERE id_pergamino = ?`,
-      [clan, titulo, texto, id],
+      `UPDATE Pergaminos SET titulo = ?, texto = ? WHERE id_pergamino = ?`,
+      [titulo, texto, id],
       (error, resultado) => {
         if (error) return reject(error);
         resolve(resultado);
@@ -107,4 +98,4 @@ function traerPergaminoPorId(id) {
   });
 }
 
-module.exports = {traerPergaminos, traerClanes, agregarPergamino, eliminarPergamino, actualizarPergamino, traerPergaminoPorId, traerClanDelGato,traerPergaminosPorClan}
+module.exports = {traerPergaminos, agregarPergamino, eliminarPergamino, actualizarPergamino, traerPergaminoPorId, traerClanDelGato,traerPergaminosPorClan}

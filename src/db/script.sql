@@ -57,7 +57,6 @@ CREATE TABLE ClanTerri (
 
 -- Inserciones
 
--- Índices sugeridos
 CREATE INDEX idx_gatitos_id_clan ON Gatitos(id_clan);
 CREATE INDEX idx_usuarios_id_gato ON Usuarios(id_gato);
 CREATE INDEX idx_pergaminos_clan ON Pergaminos(clan);

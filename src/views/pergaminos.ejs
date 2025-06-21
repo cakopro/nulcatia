@@ -34,18 +34,18 @@
           </tr>
         </thead>
         <tbody>
-          <% pergaminos.forEach(function(pergamino) { %>
+          <% pergaminos.forEach(pergamino => { %>
             <tr>
               <td>
                 <%= pergamino.clan %>
               </td>
-              <td>
+              <td>  
                 <%= pergamino.titulo %>
               </td>
               <td>
                 <%= pergamino.texto %>
               </td>
-              <% if (usuario && usuario.rol==='admin' ) { %>
+              <% if (usuario && usuario.rol==='admin' && pergamino.id_clan === id_clan) { %>
                 <td class="acciones">
                   <form action="/pergaminos/<%= pergamino.id_pergamino %>?_method=DELETE" method="POST"
                     class="formulario-eliminar">

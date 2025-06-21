@@ -11,52 +11,83 @@
 <body>
   <%- include('partials/header') %>
 
-  <main>
-    <div style="display: flex; justify-content: end; margin-bottom: 1em;">
-      <input type="text" class="barra-busqueda" id="filtroGatitos" placeholder="Buscar gatito..." style="padding: 0.4em 0.6em; width: 80px; border-radius: 6px;">
-    </div>
+    <main>
+      <div class="contenedor-busqueda">
+        <button id="btnBuscar" class="icono-busqueda">
+          <span class="material-icons">search</span>
+        </button>
+        <input type="text" id="filtroClan" class="barra-busqueda-oculta" placeholder="Buscar clan por nombre...">
+      </div>
 
-    <table class="tabla">
-      <thead>
-        <tr>
-          <th colspan="5">Gatitos</th>
-        </tr>
-        <tr>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Fecha nacimiento</th>
-          <th>Clan</th>
-          <th>Experiencia</th>
-        </tr>
-      </thead>
-      <tbody id="tablaGatitos">
-        <% gatitos.forEach(gato => { %>
+      <table class="tabla">
+        <thead>
           <tr>
-            <td><%= gato.nombre %></td>
-            <td><%= gato.apellido %></td>
-            <td><%= gato.fecha_nacimiento.toISOString().slice(0,10) %></td>
-            <td><%= gato.clan %></td>
-            <td><%= gato.experiencia %></td>
+            <th colspan="5">Gatitos</th>
           </tr>
-        <% }); %>
-      </tbody>
-    </table>
-  </main>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha nacimiento</th>
+            <th>Clan</th>
+            <th>Experiencia</th>
+          </tr>
+        </thead>
+        <tbody id="tablaGatitos">
+          <% gatitos.forEach(gato=> { %>
+            <tr>
+              <td>
+                <%= gato.nombre %>
+              </td>
+              <td>
+                <%= gato.apellido %>
+              </td>
+              <td>
+                <%= gato.fecha_nacimiento.toISOString().slice(0,10) %>
+              </td>
+              <td>
+                <%= gato.clan %>
+              </td>
+              <td>
+                <%= gato.experiencia %>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+    </main>
 
-  <%- include('partials/footer') %>
+    <%- include('partials/footer') %>
 
-  <script>
-    document.getElementById('filtroGatitos').addEventListener('input', function () {
-      const filtro = this.value.toLowerCase();
-      const filas = document.querySelectorAll('#tablaGatitos tr');
+      <script>
+        document.getElementById('filtroClan').addEventListener('input', function () {
+          const filtro = this.value.toLowerCase();
+          const filas = document.querySelectorAll('#tablaGatitos tr');
 
-      filas.forEach(fila => {
-        const nombre = fila.children[0].textContent.toLowerCase();
-        const apellido = fila.children[1].textContent.toLowerCase();
-        fila.style.display = (nombre.includes(filtro) || apellido.includes(filtro)) ? '' : 'none';
-      });
-    });
-  </script>
+          filas.forEach(fila => {
+            const nombre = fila.children[0].textContent.toLowerCase();
+            const apellido = fila.children[1].textContent.toLowerCase();
+            fila.style.display = (nombre.includes(filtro) || apellido.includes(filtro)) ? '' : 'none';
+          });
+        });
+      </script>
+      <script>
+        document.getElementById('btnBuscar').addEventListener('click', function () {
+          const input = document.getElementById('filtroClan');
+          input.classList.toggle('visible');
+          input.focus();
+        });
+
+        document.getElementById('filtroClan').addEventListener('input', function () {
+          const filtro = this.value.toLowerCase();
+          const filas = document.querySelectorAll('#tablaGatitos tr');
+
+          filas.forEach(fila => {
+            const nombre = fila.children[0].textContent.toLowerCase();
+            const apellido = fila.children[1].textContent.toLowerCase();
+            fila.style.display = (nombre.includes(filtro) || apellido.includes(filtro)) ? '' : 'none';
+          });
+        });
+      </script>
 </body>
 
 </html>

@@ -17,17 +17,7 @@
         <h1>Crear pergamino</h1>
 
         <form action="/pergaminos/nuevopergamino" method="post" class="formulario-register">
-          <div class="input-group">
-            <label for="id_clan">Clan:</label>
-            <select id="id_clan" name="id_clan">
-              <% clanes.forEach(clan => { %>
-                <option value="<%= clan.id_clan %>" <%= datos?.id_clan == clan.id_clan ? 'selected' : '' %>>
-                  <%= clan.nombre %>
-                </option>
-              <% }) %>
-            </select>
-          </div>
-
+          <input type="hidden" name="id_clan" value="<%= id_clan %>">
           <div class="input-group">
             <label for="titulo">Título:</label>
             <input type="text" id="titulo" name="titulo" value="<%= datos?.titulo || '' %>" required />

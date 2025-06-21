@@ -1,3 +1,7 @@
+body{
+  background: linear-gradient(to right, #232526, #414345);
+}
+
 .centrar{
     display: flex;
     flex-direction: column;
@@ -5,20 +9,25 @@
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
-    background-color: aqua;
-
+    color: white;
+    background: linear-gradient(to right, #232526, #414345);
 }
 
 .container-central{
     max-width: 600px;
     width: 100%;
-    background-color: white;
     padding: 30px;
     border-radius: 20px;
-    box-shadow:  0 0 10px rgba(0,0,0,0.2);;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: box-shadow 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent;
 }
 
 
+.container-central:hover {
+  border: 2px solid #00ffe5;
+  box-shadow: 0 0 15px #00ffe5, 0 0 30px #00ffe5aa;
+}
 .container-foto{
     display: flex;
     align-items: bottom;

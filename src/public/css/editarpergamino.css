@@ -1,0 +1,80 @@
+body {
+    background: linear-gradient(to right, #232526, #414345);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* contenido central */
+.container-central {
+    background: linear-gradient(to right, #232526, #414345);
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+/* título */
+.container-central h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #155299;
+}
+
+/* formularios */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ECEFF1; /* texto claro sobre fondo oscuro */
+}
+
+.input-group input,
+.input-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* botones */
+.botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.boton-guardar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.boton-guardar:hover {
+    background-color: #45a049;
+}
+
+.boton-cancelar {
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.boton-cancelar:hover {
+  background-color: #d32f2f;
+}

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Editar Pergamino</title>
-  <link rel="stylesheet" href="/css/pergaminos.css" />
+  <link rel="stylesheet" href="/css/editarpergamino.css" />
 </head>
 <body>
   <%- include('partials/header') %>
@@ -34,20 +34,6 @@
               value="<%= datos.texto || '' %>"
               required
             />
-          </div>
-
-          <div class="input-group">
-            <label for="clan">Clan</label>
-            <select id="clan" name="clan" required>
-              <% clanes.forEach(clan => { %>
-                <option
-                  value="<%= clan.id_clan %>"
-                  <%= datos.clan == clan.id_clan ? 'selected' : '' %>
-                >
-                  <%= clan.nombre %>
-                </option>
-              <% }) %>
-            </select>
           </div>
 
           <div class="botones">
